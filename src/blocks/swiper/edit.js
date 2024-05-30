@@ -1,41 +1,114 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
 import { __ } from '@wordpress/i18n';
+import {
+	useBlockProps,
+	InspectorControls,
+} from "@wordpress/block-editor";
+import { useSelect } from "@wordpress/data";
+import { PanelBody, SelectControl, Spinner, RangeControl } from "@wordpress/components";
+import {useEffect, useRef, useState} from '@wordpress/element';
 
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
+import Swiper from 'swiper';
+import {Navigation, Pagination} from "swiper/modules";
+// importe les styles nécessaires pour Swiper
+import 'swiper/css';
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
+Swiper.use([Navigation, Pagination]);
 import './editor.scss';
+import metadata from "./block.json";
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
 export default function Edit() {
+	const swiperRef = useRef(null);
+	const blockProps = useBlockProps();
+	const [postsPerPage, setPostsPerPage] = useState(5);
+	const [postType, setPostType] = useState('post');
+
+	// Détermination de l'état de chargement pour les types de post et les posts
+	const { postTypes, isLoadingTypes } = useSelect((select) => {
+		const { getEntityRecords, isResolving } = select("core");
+		const data = getEntityRecords("root", "postType", {
+			per_page: -1,
+		});
+		const isLoading = isResolving("core", "getEntityRecords", ["root", "postType", { per_page: -1 }]);
+		return { postTypes: data?.filter(item => item.visibility.show_in_nav_menus && item.visibility.show_ui), isLoadingTypes: isLoading };
+	}, []);
+
+	const { posts, isLoadingPosts } = useSelect(select => {
+		const { getEntityRecords, isResolving } = select('core');
+		const data = getEntityRecords('postType', postType, {
+			per_page: postsPerPage // Utilisation de postsPerPage
+		});
+		const isLoading = isResolving('core', 'getEntityRecords', ['postType', postType, { per_page: postsPerPage }]);
+		return { posts: data, isLoadingPosts: isLoading };
+	}, [postType, postsPerPage]); // Ajoutez postsPerPage comme dépendance
+
+	useEffect(() => {
+		if (swiperRef.current) {
+			new Swiper(swiperRef.current, {
+				loop: true,
+				slidesPerView: 3,
+				spaceBetween: 30,
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+				},
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+				allowTouchMove: false,
+				simulateTouch: false,
+			});
+		}
+	}, [posts]); // Réinitialise le swiper chaque fois que les posts changent
+
+	console.log({ posts });
+
 	return (
-		<p { ...useBlockProps() }>
-			{ __(
-				'Antonin Blocks – hello from the editor!',
-				'antonin-blocks'
-			) }
-		</p>
+		<>
+			<InspectorControls>
+				<PanelBody title={__("Settings", metadata.textdomain)}>
+					<SelectControl
+						label={__('Select Post Type:', metadata.textdomain)}
+						value={postType}
+						options={[
+							...(postTypes || []).map((item) => ({
+								label: item.labels.singular_name,
+								value: item.slug,
+							})),
+						]}
+						onChange={(value) => setPostType(value)}
+					/>
+					<RangeControl
+						label={__('Number of Posts:', metadata.textdomain)}
+						value={postsPerPage}
+						onChange={(value) => setPostsPerPage(Number(value))}
+						min={1}
+						max={10}
+					/>
+				</PanelBody>
+			</InspectorControls>
+
+			<div {...blockProps}>
+				<div ref={swiperRef} className="swiper-container">
+					<div className="swiper-wrapper">
+						{posts && posts.length > 0 ? (
+							posts.map(post => (
+								<div className="swiper-slide" key={post.id}>
+									<div className="card">
+										<h3>{post.title.rendered}</h3>
+										<p>{post.excerpt.rendered}</p>
+									</div>
+								</div>
+							))
+						) : (
+							<p>{__('No posts found.', metadata.textdomain)}</p>
+						)}
+					</div>
+					<div className="swiper-pagination"></div>
+					<div className="swiper-button-prev"></div>
+					<div className="swiper-button-next"></div>
+				</div>
+			</div>
+		</>
 	);
 }

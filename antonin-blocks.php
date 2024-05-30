@@ -33,6 +33,8 @@ class AntoninBlocks
 				]);
 				return $categories;
 			}, 10, 2);
+
+			register_block_type( __DIR__ . '/build/blocks/swiper' );
 		});
 	}
 }
