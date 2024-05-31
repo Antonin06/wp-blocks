@@ -10,7 +10,7 @@ import {useEffect, useRef, useState} from '@wordpress/element';
 import Swiper from 'swiper';
 import {Navigation, Pagination} from "swiper/modules";
 // importe les styles nécessaires pour Swiper
-import 'swiper/css';
+import 'swiper/swiper-bundle.css';
 
 Swiper.use([Navigation, Pagination]);
 import './editor.scss';
@@ -43,21 +43,39 @@ export default function Edit() {
 
 	useEffect(() => {
 		if (swiperRef.current) {
-			new Swiper(swiperRef.current, {
-				loop: true,
+			const navigationPrev = swiperRef.current.querySelector('.swiper-button-prev');
+			const navigationNext = swiperRef.current.querySelector('.swiper-button-next');
+			let swiper = new Swiper(swiperRef.current, {
 				slidesPerView: 3,
 				spaceBetween: 30,
-				pagination: {
-					el: '.swiper-pagination',
-					clickable: true,
-				},
 				navigation: {
-					nextEl: '.swiper-button-next',
-					prevEl: '.swiper-button-prev',
+					nextEl: navigationNext,
+					prevEl: navigationPrev,
 				},
-				allowTouchMove: false,
 				simulateTouch: false,
+				preventClicks: false,
+				preventClicksPropagation: false,
 			});
+
+			if (navigationPrev) {
+				console.log('prev')
+				navigationPrev.addEventListener('click', () => {
+					console.log('prev click')
+					swiper.slidePrev();
+				});
+			}
+			if (navigationNext) {
+				console.log('next')
+				navigationNext.addEventListener('click', () => {
+					console.log('next click')
+					swiper.slideNext();
+				});
+			}
+
+			return () => {
+				// S'assurer de détruire l'instance de Swiper pour éviter des fuites de mémoire
+				if (swiper) swiper.destroy();
+			};
 		}
 	}, [posts]); // Réinitialise le swiper chaque fois que les posts changent
 
@@ -104,9 +122,9 @@ export default function Edit() {
 							<p>{__('No posts found.', metadata.textdomain)}</p>
 						)}
 					</div>
-					<div className="swiper-pagination"></div>
 					<div className="swiper-button-prev"></div>
 					<div className="swiper-button-next"></div>
+					<div className="swiper-pagination"></div>
 				</div>
 			</div>
 		</>

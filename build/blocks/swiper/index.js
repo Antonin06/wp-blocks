@@ -26,7 +26,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.mjs");
 /* harmony import */ var swiper_modules__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! swiper/modules */ "./node_modules/swiper/modules/index.mjs");
-/* harmony import */ var swiper_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! swiper/css */ "./node_modules/swiper/swiper.css");
+/* harmony import */ var swiper_swiper_bundle_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! swiper/swiper-bundle.css */ "./node_modules/swiper/swiper-bundle.css");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/swiper/editor.scss");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./block.json */ "./src/blocks/swiper/block.json");
 
@@ -90,21 +90,37 @@ function Edit() {
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
     if (swiperRef.current) {
-      new swiper__WEBPACK_IMPORTED_MODULE_6__["default"](swiperRef.current, {
-        loop: true,
+      const navigationPrev = swiperRef.current.querySelector('.swiper-button-prev');
+      const navigationNext = swiperRef.current.querySelector('.swiper-button-next');
+      let swiper = new swiper__WEBPACK_IMPORTED_MODULE_6__["default"](swiperRef.current, {
         slidesPerView: 3,
         spaceBetween: 30,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true
-        },
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: navigationNext,
+          prevEl: navigationPrev
         },
-        allowTouchMove: false,
-        simulateTouch: false
+        simulateTouch: false,
+        preventClicks: false,
+        preventClicksPropagation: false
       });
+      if (navigationPrev) {
+        console.log('prev');
+        navigationPrev.addEventListener('click', () => {
+          console.log('prev click');
+          swiper.slidePrev();
+        });
+      }
+      if (navigationNext) {
+        console.log('next');
+        navigationNext.addEventListener('click', () => {
+          console.log('next click');
+          swiper.slideNext();
+        });
+      }
+      return () => {
+        // S'assurer de détruire l'instance de Swiper pour éviter des fuites de mémoire
+        if (swiper) swiper.destroy();
+      };
     }
   }, [posts]); // Réinitialise le swiper chaque fois que les posts changent
 
@@ -140,11 +156,11 @@ function Edit() {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "card"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, post.title.rendered), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, post.excerpt.rendered)))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('No posts found.', _block_json__WEBPACK_IMPORTED_MODULE_10__.textdomain))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "swiper-pagination"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "swiper-button-prev"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "swiper-button-next"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "swiper-pagination"
   }))));
 }
 
@@ -200,10 +216,10 @@ function save() {
 
 /***/ }),
 
-/***/ "./node_modules/swiper/swiper.css":
-/*!****************************************!*\
-  !*** ./node_modules/swiper/swiper.css ***!
-  \****************************************/
+/***/ "./node_modules/swiper/swiper-bundle.css":
+/*!***********************************************!*\
+  !*** ./node_modules/swiper/swiper-bundle.css ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
