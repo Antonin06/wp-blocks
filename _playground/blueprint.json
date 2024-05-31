@@ -14,6 +14,23 @@
 	"steps": [
 		{
 			"step": "login"
+		},
+		{
+			"step": "installPlugin",
+			"pluginZipFile": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/Antonin06/wp-blocks/main/antonin-blocks.zip"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "importFile",
+			"file": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/Antonin06/wp-blocks/main/_playground/demo-content.xml"
+			}
 		}
 	]
 }
