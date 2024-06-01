@@ -7,15 +7,24 @@ import { useSelect } from "@wordpress/data";
 import { PanelBody, SelectControl, Spinner, RangeControl } from "@wordpress/components";
 import {useEffect, useRef, useState} from '@wordpress/element';
 
-import Swiper from 'swiper';
+// Libraries
+import {Swiper} from 'swiper';
 import {Navigation, Pagination} from "swiper/modules";
-// importe les styles nécessaires pour Swiper
-import 'swiper/swiper-bundle.css';
+// Components
+import PostCard from '../../components/card/cardPost';
 
-Swiper.use([Navigation, Pagination]);
+// CSS
 import './editor.scss';
+import './style.scss';
+
+// Metadata
 import metadata from "./block.json";
 
+Swiper.use([Navigation, Pagination]);
+
+const cardComponents = {
+	post: PostCard,
+};
 export default function Edit() {
 	const swiperRef = useRef(null);
 	const blockProps = useBlockProps();
@@ -79,7 +88,8 @@ export default function Edit() {
 		}
 	}, [posts]); // Réinitialise le swiper chaque fois que les posts changent
 
-	console.log({ posts });
+
+	const CardComponent = cardComponents[postType] || PostCard;
 
 	return (
 		<>
@@ -112,10 +122,7 @@ export default function Edit() {
 						{posts && posts.length > 0 ? (
 							posts.map(post => (
 								<div className="swiper-slide" key={post.id}>
-									<div className="card">
-										<h3>{post.title.rendered}</h3>
-										<p>{post.excerpt.rendered}</p>
-									</div>
+									<CardComponent post={post} />
 								</div>
 							))
 						) : (

@@ -5,8 +5,53 @@
  * Replace them with your own styles or remove the file completely.
  */
 
+@import "swiper/css";
+@import "swiper/css/a11y";
+@import "swiper/css/autoplay";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
 .wp-block-create-block-antonin-blocks {
 	background-color: #21759b;
 	color: #fff;
 	padding: 2px;
 }
+
+.card-post {
+	position: relative;
+
+	&__header{
+		position: relative;
+	}
+
+	&__category {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		background-color: #21759b;
+		color: #fff;
+		padding: 5px 10px;
+		z-index: 1;
+	}
+
+	&__thumbnail {
+		display: block;
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+	}
+
+	&__link {
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			z-index: 0;
+		}
+	}
+}
+

@@ -26,9 +26,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.mjs");
 /* harmony import */ var swiper_modules__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! swiper/modules */ "./node_modules/swiper/modules/index.mjs");
-/* harmony import */ var swiper_swiper_bundle_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! swiper/swiper-bundle.css */ "./node_modules/swiper/swiper-bundle.css");
+/* harmony import */ var _components_card_cardPost__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/card/cardPost */ "./src/components/card/cardPost.js");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/swiper/editor.scss");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./block.json */ "./src/blocks/swiper/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/swiper/style.scss");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./block.json */ "./src/blocks/swiper/block.json");
 
 
 
@@ -36,12 +37,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-// importe les styles nécessaires pour Swiper
-
-swiper__WEBPACK_IMPORTED_MODULE_6__["default"].use([swiper_modules__WEBPACK_IMPORTED_MODULE_7__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_7__.Pagination]);
+// Libraries
 
 
+// Components
+
+
+// CSS
+
+
+
+// Metadata
+
+swiper__WEBPACK_IMPORTED_MODULE_6__.Swiper.use([swiper_modules__WEBPACK_IMPORTED_MODULE_7__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_7__.Pagination]);
+const cardComponents = {
+  post: _components_card_cardPost__WEBPACK_IMPORTED_MODULE_8__["default"]
+};
 function Edit() {
   const swiperRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useRef)(null);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
@@ -92,7 +103,7 @@ function Edit() {
     if (swiperRef.current) {
       const navigationPrev = swiperRef.current.querySelector('.swiper-button-prev');
       const navigationNext = swiperRef.current.querySelector('.swiper-button-next');
-      let swiper = new swiper__WEBPACK_IMPORTED_MODULE_6__["default"](swiperRef.current, {
+      let swiper = new swiper__WEBPACK_IMPORTED_MODULE_6__.Swiper(swiperRef.current, {
         slidesPerView: 3,
         spaceBetween: 30,
         navigation: {
@@ -124,13 +135,11 @@ function Edit() {
     }
   }, [posts]); // Réinitialise le swiper chaque fois que les posts changent
 
-  console.log({
-    posts
-  });
+  const CardComponent = cardComponents[postType] || _components_card_cardPost__WEBPACK_IMPORTED_MODULE_8__["default"];
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Settings", _block_json__WEBPACK_IMPORTED_MODULE_10__.textdomain)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Settings", _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Post Type:', _block_json__WEBPACK_IMPORTED_MODULE_10__.textdomain),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Post Type:', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
     value: postType,
     options: [...(postTypes || []).map(item => ({
       label: item.labels.singular_name,
@@ -138,7 +147,7 @@ function Edit() {
     }))],
     onChange: value => setPostType(value)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of Posts:', _block_json__WEBPACK_IMPORTED_MODULE_10__.textdomain),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of Posts:', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
     value: postsPerPage,
     onChange: value => setPostsPerPage(Number(value)),
     min: 1,
@@ -153,9 +162,9 @@ function Edit() {
   }, posts && posts.length > 0 ? posts.map(post => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "swiper-slide",
     key: post.id
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "card"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, post.title.rendered), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, post.excerpt.rendered)))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('No posts found.', _block_json__WEBPACK_IMPORTED_MODULE_10__.textdomain))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(CardComponent, {
+    post: post
+  }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('No posts found.', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "swiper-button-prev"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "swiper-button-next"
@@ -216,15 +225,85 @@ function save() {
 
 /***/ }),
 
-/***/ "./node_modules/swiper/swiper-bundle.css":
-/*!***********************************************!*\
-  !*** ./node_modules/swiper/swiper-bundle.css ***!
-  \***********************************************/
+/***/ "./src/components/card/cardPost.js":
+/*!*****************************************!*\
+  !*** ./src/components/card/cardPost.js ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
 
+
+
+const cardPost = ({
+  post
+}) => {
+  console.log(post);
+  const categories = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => {
+    if (!post.categories || post.categories.length === 0) {
+      return [];
+    }
+    const {
+      getEntityRecords
+    } = select('core');
+    return getEntityRecords('taxonomy', 'category', {
+      include: post.categories
+    });
+  }, [post.categories]);
+  const thumbnailUrl = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => {
+    if (!post.featured_media) {
+      return 'https://via.placeholder.com/150';
+    }
+    const media = select('core').getMedia(post.featured_media);
+    return media ? media.source_url : 'https://via.placeholder.com/150';
+  }, [post.featured_media]);
+  const altText = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => {
+    if (!post.featured_media) {
+      return 'Placeholder';
+    }
+    const media = select('core').getMedia(post.featured_media);
+    return media ? media.alt_text : 'Placeholder';
+  }, [post.featured_media]);
+  console.log(thumbnailUrl);
+  console.log(categories);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
+    className: "card-post"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "card-post__header"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    className: "card-post__thumbnail",
+    src: thumbnailUrl,
+    alt: altText
+  }), categories && categories.length > 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    className: "card-post__category",
+    href: categories[0].link,
+    target: "_blank"
+  }, categories[0].name) : null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
+    className: "card-post__title",
+    dangerouslySetInnerHTML: {
+      __html: post.title.rendered
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "card-post__excerpt",
+    dangerouslySetInnerHTML: {
+      __html: post.excerpt.rendered
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    className: "card-post__link",
+    href: post.link,
+    target: "_blank"
+  }, "Read more"));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (cardPost);
 
 /***/ }),
 
@@ -259,6 +338,16 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module) => {
 
 module.exports = window["React"];
+
+/***/ }),
+
+/***/ "@wordpress/api-fetch":
+/*!**********************************!*\
+  !*** external ["wp","apiFetch"] ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["apiFetch"];
 
 /***/ }),
 
@@ -571,7 +660,11 @@ function A11y(_ref) {
     }
     requestAnimationFrame(() => {
       if (preventFocusHandler) return;
-      swiper.slideTo(swiper.slides.indexOf(slideEl), 0);
+      if (swiper.params.loop) {
+        swiper.slideToLoop(parseInt(slideEl.getAttribute('data-swiper-slide-index')), 0);
+      } else {
+        swiper.slideTo(swiper.slides.indexOf(slideEl), 0);
+      }
       preventFocusHandler = false;
     });
   };
@@ -670,9 +763,11 @@ function A11y(_ref) {
     const document = (0,_shared_ssr_window_esm_mjs__WEBPACK_IMPORTED_MODULE_0__.g)();
     document.removeEventListener('visibilitychange', onVisibilityChange);
     // Tab focus
-    swiper.el.removeEventListener('focus', handleFocus, true);
-    swiper.el.removeEventListener('pointerdown', handlePointerDown, true);
-    swiper.el.removeEventListener('pointerup', handlePointerUp, true);
+    if (swiper.el && typeof swiper.el !== 'string') {
+      swiper.el.removeEventListener('focus', handleFocus, true);
+      swiper.el.removeEventListener('pointerdown', handlePointerDown, true);
+      swiper.el.removeEventListener('pointerup', handlePointerUp, true);
+    }
   }
   on('beforeInit', () => {
     liveRegion = (0,_shared_utils_mjs__WEBPACK_IMPORTED_MODULE_2__.c)('span', swiper.params.a11y.notificationClass);
@@ -933,8 +1028,10 @@ function Autoplay(_ref) {
     }
   };
   const detachMouseEvents = () => {
-    swiper.el.removeEventListener('pointerenter', onPointerEnter);
-    swiper.el.removeEventListener('pointerleave', onPointerLeave);
+    if (swiper.el && typeof swiper.el !== 'string') {
+      swiper.el.removeEventListener('pointerenter', onPointerEnter);
+      swiper.el.removeEventListener('pointerleave', onPointerLeave);
+    }
   };
   const attachDocumentEvents = () => {
     const document = (0,_shared_ssr_window_esm_mjs__WEBPACK_IMPORTED_MODULE_0__.g)();
@@ -3763,7 +3860,14 @@ function Navigation(_ref) {
     nextEl = (0,_shared_utils_mjs__WEBPACK_IMPORTED_MODULE_1__.m)(nextEl);
     prevEl = (0,_shared_utils_mjs__WEBPACK_IMPORTED_MODULE_1__.m)(prevEl);
     const targetEl = e.target;
-    if (swiper.params.navigation.hideOnClick && !prevEl.includes(targetEl) && !nextEl.includes(targetEl)) {
+    let targetIsButton = prevEl.includes(targetEl) || nextEl.includes(targetEl);
+    if (swiper.isElement && !targetIsButton) {
+      const path = e.path || e.composedPath && e.composedPath();
+      if (path) {
+        targetIsButton = path.find(pathEl => nextEl.includes(pathEl) || prevEl.includes(pathEl));
+      }
+    }
+    if (swiper.params.navigation.hideOnClick && !targetIsButton) {
       if (swiper.pagination && swiper.params.pagination && swiper.params.pagination.clickable && (swiper.pagination.el === targetEl || swiper.pagination.el.contains(targetEl))) return;
       let isHidden;
       if (nextEl.length) {
@@ -5627,10 +5731,6 @@ function Zoom(_ref) {
     // Define if we need image drag
     const scaledWidth = image.width * zoom.scale;
     const scaledHeight = image.height * zoom.scale;
-    if (scaledWidth < gesture.slideWidth && scaledHeight < gesture.slideHeight) {
-      allowTouchMove();
-      return;
-    }
     image.minX = Math.min(gesture.slideWidth / 2 - scaledWidth / 2, 0);
     image.maxX = -image.minX;
     image.minY = Math.min(gesture.slideHeight / 2 - scaledHeight / 2, 0);
@@ -9225,6 +9325,7 @@ const events = (swiper, method) => {
   const capture = !!params.nested;
   const domMethod = method === 'on' ? 'addEventListener' : 'removeEventListener';
   const swiperMethod = method;
+  if (!el || typeof el === 'string') return;
 
   // Touch Events
   document[domMethod]('touchstart', swiper.onDocumentTouchStart, {
@@ -9501,6 +9602,7 @@ function removeClasses() {
     el,
     classNames
   } = swiper;
+  if (!el || typeof el === 'string') return;
   el.classList.remove(...classNames);
   swiper.emitContainerClasses();
 }
@@ -10265,8 +10367,12 @@ class Swiper {
     // Cleanup styles
     if (cleanStyles) {
       swiper.removeClasses();
-      el.removeAttribute('style');
-      wrapperEl.removeAttribute('style');
+      if (el && typeof el !== 'string') {
+        el.removeAttribute('style');
+      }
+      if (wrapperEl) {
+        wrapperEl.removeAttribute('style');
+      }
       if (slides && slides.length) {
         slides.forEach(slideEl => {
           slideEl.classList.remove(params.slideVisibleClass, params.slideFullyVisibleClass, params.slideActiveClass, params.slideNextClass, params.slidePrevClass);
@@ -10282,7 +10388,9 @@ class Swiper {
       swiper.off(eventName);
     });
     if (deleteInstance !== false) {
-      swiper.el.swiper = null;
+      if (swiper.el && typeof swiper.el !== 'string') {
+        swiper.el.swiper = null;
+      }
       (0,_utils_mjs__WEBPACK_IMPORTED_MODULE_1__.v)(swiper);
     }
     swiper.destroyed = true;
@@ -10666,7 +10774,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _shared_swiper_core_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shared/swiper-core.mjs */ "./node_modules/swiper/shared/swiper-core.mjs");
 /**
- * Swiper 11.1.3
+ * Swiper 11.1.4
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -10674,7 +10782,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * Released under the MIT License
  *
- * Released on: May 13, 2024
+ * Released on: May 30, 2024
  */
 
 
@@ -10688,7 +10796,7 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"antonin-blocks/swiper","version":"0.0.1","title":"Swiper","category":"antonin","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false},"attributes":{"postType":{"type":"string","default":""}},"textdomain":"antonin-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"antonin-blocks/swiper","version":"0.0.1","title":"Swiper","category":"antonin","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"align":true},"attributes":{"postType":{"type":"string","default":""}},"textdomain":"antonin-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
 
 /***/ })
 
