@@ -13,9 +13,19 @@
     "align": true
   },
   "attributes": {
-    "postType": {
-      "type": "string",
-      "default": ""
+    "query": {
+      "type": "object",
+      "default": {
+        "postType": "post",
+        "postsPerPage": 5
+      }
+    },
+    "sliderSettings": {
+      "type": "object",
+      "default": {
+        "slidesPerView": 3,
+        "spaceBetween": 30
+      }
     }
   },
   "textdomain": "antonin-blocks",

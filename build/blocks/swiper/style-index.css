@@ -537,11 +537,22 @@ button.swiper-pagination-bullet {
   color: #fff;
   padding: 2px;
 }
+.swiper-container {
+  padding: 10px;
+}
 .card-post {
   position: relative;
+  overflow: hidden;
+  height: 100%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: -1px 1px 5px 0px rgba(0, 0, 0, 0.75);
 }
 .card-post__header {
   position: relative;
+}
+.card-post__footer {
+  padding: 20px;
 }
 .card-post__category {
   position: absolute;
@@ -558,6 +569,9 @@ button.swiper-pagination-bullet {
   height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.card-post__title {
+  margin: 0;
 }
 .card-post__link::after {
   content: "";

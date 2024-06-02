@@ -53,16 +53,29 @@ swiper__WEBPACK_IMPORTED_MODULE_6__.Swiper.use([swiper_modules__WEBPACK_IMPORTED
 const cardComponents = {
   post: _components_card_cardPost__WEBPACK_IMPORTED_MODULE_8__["default"]
 };
-function Edit() {
-  const swiperRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useRef)(null);
+function Edit(props) {
+  const {
+    attributes,
+    setAttributes
+  } = props;
+  const {
+    query,
+    sliderSettings
+  } = attributes;
+  const {
+    postType,
+    postsPerPage
+  } = query;
+  const {
+    slidesPerView,
+    spaceBetween
+  } = sliderSettings;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
-  const [postsPerPage, setPostsPerPage] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(5);
-  const [postType, setPostType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)('post');
+  const swiperRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useRef)(null);
 
   // Détermination de l'état de chargement pour les types de post et les posts
   const {
-    postTypes,
-    isLoadingTypes
+    postTypes
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
     const {
       getEntityRecords,
@@ -80,8 +93,7 @@ function Edit() {
     };
   }, []);
   const {
-    posts,
-    isLoadingPosts
+    posts
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
     const {
       getEntityRecords,
@@ -104,8 +116,8 @@ function Edit() {
       const navigationPrev = swiperRef.current.querySelector('.swiper-button-prev');
       const navigationNext = swiperRef.current.querySelector('.swiper-button-next');
       let swiper = new swiper__WEBPACK_IMPORTED_MODULE_6__.Swiper(swiperRef.current, {
-        slidesPerView: 3,
-        spaceBetween: 30,
+        slidesPerView: slidesPerView,
+        spaceBetween: spaceBetween,
         navigation: {
           nextEl: navigationNext,
           prevEl: navigationPrev
@@ -133,25 +145,68 @@ function Edit() {
         if (swiper) swiper.destroy();
       };
     }
-  }, [posts]); // Réinitialise le swiper chaque fois que les posts changent
+  }, [posts, slidesPerView, spaceBetween]); // Réinitialise le swiper chaque fois que les posts changent
 
   const CardComponent = cardComponents[postType] || _components_card_cardPost__WEBPACK_IMPORTED_MODULE_8__["default"];
+  console.log(props.attributes, "props");
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Settings", _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Réglages requête", _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Post Type:', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Séléctionner un type de post', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
     value: postType,
     options: [...(postTypes || []).map(item => ({
       label: item.labels.singular_name,
       value: item.slug
     }))],
-    onChange: value => setPostType(value)
+    onChange: value => {
+      setAttributes({
+        query: {
+          ...query,
+          postType: value
+        }
+      });
+    }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of Posts:', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Nombre de post à afficher', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
     value: postsPerPage,
-    onChange: value => setPostsPerPage(Number(value)),
+    onChange: value => {
+      setAttributes({
+        query: {
+          ...query,
+          postsPerPage: value
+        }
+      });
+    },
     min: 1,
     max: 10
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Réglages Slider", _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Nombre de slide à afficher', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+    value: slidesPerView,
+    onChange: value => {
+      setAttributes({
+        sliderSettings: {
+          ...sliderSettings,
+          slidesPerView: Number(value)
+        }
+      });
+    },
+    min: 1,
+    max: 10
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Espace entre les slides', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+    value: spaceBetween,
+    onChange: value => {
+      setAttributes({
+        sliderSettings: {
+          ...sliderSettings,
+          spaceBetween: Number(value)
+        }
+      });
+    },
+    min: 0,
+    max: 100
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -247,7 +302,6 @@ __webpack_require__.r(__webpack_exports__);
 const cardPost = ({
   post
 }) => {
-  console.log(post);
   const categories = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => {
     if (!post.categories || post.categories.length === 0) {
       return [];
@@ -273,8 +327,6 @@ const cardPost = ({
     const media = select('core').getMedia(post.featured_media);
     return media ? media.alt_text : 'Placeholder';
   }, [post.featured_media]);
-  console.log(thumbnailUrl);
-  console.log(categories);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
     className: "card-post"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -287,7 +339,9 @@ const cardPost = ({
     className: "card-post__category",
     href: categories[0].link,
     target: "_blank"
-  }, categories[0].name) : null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
+  }, categories[0].name) : null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "card-post__footer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
     className: "card-post__title",
     dangerouslySetInnerHTML: {
       __html: post.title.rendered
@@ -301,7 +355,7 @@ const cardPost = ({
     className: "card-post__link",
     href: post.link,
     target: "_blank"
-  }, "Read more"));
+  }, "Read more")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (cardPost);
 
@@ -10796,7 +10850,7 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"antonin-blocks/swiper","version":"0.0.1","title":"Swiper","category":"antonin","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"align":true},"attributes":{"postType":{"type":"string","default":""}},"textdomain":"antonin-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"antonin-blocks/swiper","version":"0.0.1","title":"Swiper","category":"antonin","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"align":true},"attributes":{"query":{"type":"object","default":{"postType":"post","postsPerPage":5}},"sliderSettings":{"type":"object","default":{"slidesPerView":3,"spaceBetween":30}}},"textdomain":"antonin-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
 
 /***/ })
 

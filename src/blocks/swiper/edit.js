@@ -4,7 +4,7 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 import { useSelect } from "@wordpress/data";
-import { PanelBody, SelectControl, Spinner, RangeControl } from "@wordpress/components";
+import {PanelBody, SelectControl, Spinner, RangeControl, TabPanel} from "@wordpress/components";
 import {useEffect, useRef, useState} from '@wordpress/element';
 
 // Libraries
@@ -25,14 +25,17 @@ Swiper.use([Navigation, Pagination]);
 const cardComponents = {
 	post: PostCard,
 };
-export default function Edit() {
-	const swiperRef = useRef(null);
+export default function Edit(props) {
+	const { attributes, setAttributes } = props;
+	const { query, sliderSettings } = attributes;
+	const { postType, postsPerPage } = query;
+	const { slidesPerView, spaceBetween } = sliderSettings;
+
 	const blockProps = useBlockProps();
-	const [postsPerPage, setPostsPerPage] = useState(5);
-	const [postType, setPostType] = useState('post');
+	const swiperRef = useRef(null);
 
 	// Détermination de l'état de chargement pour les types de post et les posts
-	const { postTypes, isLoadingTypes } = useSelect((select) => {
+	const { postTypes } = useSelect((select) => {
 		const { getEntityRecords, isResolving } = select("core");
 		const data = getEntityRecords("root", "postType", {
 			per_page: -1,
@@ -41,7 +44,7 @@ export default function Edit() {
 		return { postTypes: data?.filter(item => item.visibility.show_in_nav_menus && item.visibility.show_ui), isLoadingTypes: isLoading };
 	}, []);
 
-	const { posts, isLoadingPosts } = useSelect(select => {
+	const { posts } = useSelect(select => {
 		const { getEntityRecords, isResolving } = select('core');
 		const data = getEntityRecords('postType', postType, {
 			per_page: postsPerPage // Utilisation de postsPerPage
@@ -55,8 +58,8 @@ export default function Edit() {
 			const navigationPrev = swiperRef.current.querySelector('.swiper-button-prev');
 			const navigationNext = swiperRef.current.querySelector('.swiper-button-next');
 			let swiper = new Swiper(swiperRef.current, {
-				slidesPerView: 3,
-				spaceBetween: 30,
+				slidesPerView: slidesPerView,
+				spaceBetween: spaceBetween,
 				navigation: {
 					nextEl: navigationNext,
 					prevEl: navigationPrev,
@@ -86,17 +89,18 @@ export default function Edit() {
 				if (swiper) swiper.destroy();
 			};
 		}
-	}, [posts]); // Réinitialise le swiper chaque fois que les posts changent
+	}, [posts, slidesPerView, spaceBetween]); // Réinitialise le swiper chaque fois que les posts changent
 
 
 	const CardComponent = cardComponents[postType] || PostCard;
 
+	console.log(props.attributes, "props");
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__("Settings", metadata.textdomain)}>
+				<PanelBody title={__("Réglages requête", metadata.textdomain)}>
 					<SelectControl
-						label={__('Select Post Type:', metadata.textdomain)}
+						label={__('Séléctionner un type de post', metadata.textdomain)}
 						value={postType}
 						options={[
 							...(postTypes || []).map((item) => ({
@@ -104,14 +108,58 @@ export default function Edit() {
 								value: item.slug,
 							})),
 						]}
-						onChange={(value) => setPostType(value)}
+						onChange={(value) => {
+							setAttributes({
+								query: {
+									...query,
+									postType: value
+								}
+							});
+						}}
 					/>
 					<RangeControl
-						label={__('Number of Posts:', metadata.textdomain)}
+						label={__('Nombre de post à afficher', metadata.textdomain)}
 						value={postsPerPage}
-						onChange={(value) => setPostsPerPage(Number(value))}
+						onChange={(value) => {
+							setAttributes({
+								query: {
+									...query,
+									postsPerPage: value
+								}
+							});
+						}}
 						min={1}
 						max={10}
+					/>
+				</PanelBody>
+				<PanelBody title={__("Réglages Slider", metadata.textdomain)}>
+					<RangeControl
+						label={__('Nombre de slide à afficher', metadata.textdomain)}
+						value={slidesPerView}
+						onChange={(value) => {
+							setAttributes({
+								sliderSettings: {
+									...sliderSettings,
+									slidesPerView: Number(value)
+								}
+							});
+						}}
+						min={1}
+						max={10}
+					/>
+					<RangeControl
+						label={__('Espace entre les slides', metadata.textdomain)}
+						value={spaceBetween}
+						onChange={(value) => {
+							setAttributes({
+								sliderSettings: {
+									...sliderSettings,
+									spaceBetween: Number(value)
+								}
+							});
+						}}
+						min={0}
+						max={100}
 					/>
 				</PanelBody>
 			</InspectorControls>

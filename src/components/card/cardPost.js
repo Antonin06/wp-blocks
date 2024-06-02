@@ -2,7 +2,6 @@ import {useSelect} from "@wordpress/data";
 import getMedia from "@wordpress/api-fetch";
 
 const cardPost = ({ post }) => {
-	console.log(post)
 
 	const categories = useSelect((select) => {
 		if (!post.categories || post.categories.length === 0) {
@@ -28,10 +27,6 @@ const cardPost = ({ post }) => {
 		return media ? media.alt_text : 'Placeholder';
 	}, [post.featured_media]);
 
-
-	console.log(thumbnailUrl)
-	console.log(categories)
-
 	return (
 		<article className="card-post">
 			<div className="card-post__header">
@@ -41,14 +36,17 @@ const cardPost = ({ post }) => {
 					alt={altText}
 				/>
 				{categories && categories.length > 0 ? (
-					<a className="card-post__category" href={categories[0].link} target="_blank">{categories[0].name}</a>
+					<a className="card-post__category" href={categories[0].link}
+					   target="_blank">{categories[0].name}</a>
 				) : null}
 			</div>
-			<h2 className="card-post__title" dangerouslySetInnerHTML={{__html: post.title.rendered}}></h2>
-			<p className="card-post__excerpt" dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}></p>
-			<a className="card-post__link" href={post.link} target="_blank">Read more</a>
+			<div className="card-post__footer">
+				<h2 className="card-post__title" dangerouslySetInnerHTML={{__html: post.title.rendered}}></h2>
+				<p className="card-post__excerpt" dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}></p>
+				<a className="card-post__link" href={post.link} target="_blank">Read more</a>
+			</div>
 		</article>
-	);
+);
 }
 
 export default cardPost;
