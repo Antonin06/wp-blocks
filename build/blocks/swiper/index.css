@@ -9,5 +9,8 @@
 .wp-block-antonin-blocks-swiper {
   overflow: hidden;
 }
+.panel-tab-responsive-settings__desktop-tab.active-tab, .panel-tab-responsive-settings__tablet-tab.active-tab, .panel-tab-responsive-settings__mobile-tab.active-tab {
+  background-color: #f3f3f3;
+}
 
 /*# sourceMappingURL=index.css.map*/

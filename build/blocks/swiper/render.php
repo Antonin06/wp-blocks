@@ -10,7 +10,9 @@ $postsPerPage = $queryAttrs['postsPerPage'] ?? 5;
 
 // Slider Attributes
 $sliderAttrs = $attributes['sliderSettings'] ?? [];
-$slidesPerView = $sliderAttrs['slidesPerView'] ?? 1;
+$slidesPerViewDesktop = $sliderAttrs['slidesPerViewDesktop'] ?? 3;
+$slidesPerViewTablet = $sliderAttrs['slidesPerViewTablet'] ?? 2;
+$slidesPerViewMobile = $sliderAttrs['slidesPerViewMobile'] ?? 1;
 $spaceBetween = $sliderAttrs['spaceBetween'] ?? 10;
 
 // Query Posts - Get the attributes from the block editor
@@ -22,30 +24,39 @@ $query = new WP_Query([
 $block_wrapper_attributes = get_block_wrapper_attributes(
 	[
 		"data-swiper" => json_encode([
-			"slidesPerView" => esc_attr($slidesPerView),
-			"spaceBetween" => esc_attr($spaceBetween),
+			"slidesPerViewDesktop" => esc_attr($slidesPerViewDesktop),
+			"slidesPerViewTablet" => esc_attr($slidesPerViewTablet),
+			"slidesPerViewMobile" => esc_attr($slidesPerViewMobile),
+			"spaceBetween" => esc_attr($spaceBetween)
 		])
 	]
 );
-
-
-echo "<pre>";
-var_dump($block_wrapper_attributes);
-echo "</pre>";
 ?>
 
 <div <?php echo $block_wrapper_attributes;  ?>>
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
-			<?php foreach($query->posts as $post): ?>
+			<?php foreach($query->posts as $post):
+				$getTerms = get_the_terms($post->ID, 'category');
+				?>
 				<div class="swiper-slide">
-					<a href="<?php echo get_permalink($post->ID); ?>">
-						<?php echo get_the_post_thumbnail($post->ID, 'medium'); ?>
-						<h3><?php echo $post->post_title; ?></h3>
-					</a>
+					<article class="card-post">
+						<div class="card-post__header">
+							<?php echo Antonin\AntoninBlocks::getThePostThumbnail($post->ID); ?>
+
+							<?php echo Antonin\AntoninBlocks::getThePostCategory($post->ID); ?>
+						</div>
+						<div class="card-post__footer">
+							<h2 class="card-post__title"><?php echo $post->post_title; ?></h2>
+							<div class="card-post__excerpt"><?php echo $post->post_excerpt; ?></div>
+							<a class="card-post__link" href="<?php echo get_permalink($post->ID); ?>"><?php echo __('Read more', 'antonin-blocks') ?></a>
+						</div>
+					</article>
 				</div>
 			<?php endforeach; ?>
 		</div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
 		<div class="swiper-pagination"></div>
 	</div>
 </div>

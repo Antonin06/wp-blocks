@@ -18,8 +18,23 @@ if(swiperBlocks.length) {
 
 		const sliderSettings = JSON.parse(swiperBlock.dataset.swiper);
 		const swiper = new Swiper(swiperContainer, {
-			slidesPerView: sliderSettings.slidesPerView,
+			slidesPerView: sliderSettings.slidesPerViewMobile,
 			spaceBetween: sliderSettings.spaceBetween,
+			// breakpoints: {
+			// 	1024: {
+			// 		slidesPerView: sliderSettings.slidesPerViewDesktop,
+			// 	},
+			// 	768: {
+			// 		slidesPerView: sliderSettings.slidesPerViewTablet,
+			// 	},
+			// 	320: {
+			// 		slidesPerView: sliderSettings.slidesPerViewMobile,
+			// 	},
+			// },
+			navigation: {
+				nextEl: swiperBlock.querySelector('.swiper-button-next'),
+				prevEl: swiperBlock.querySelector('.swiper-button-prev'),
+			},
 		});
 	});
 }

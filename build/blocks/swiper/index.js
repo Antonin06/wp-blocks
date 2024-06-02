@@ -67,11 +67,24 @@ function Edit(props) {
     postsPerPage
   } = query;
   const {
-    slidesPerView,
+    slidesPerViewDesktop,
+    slidesPerViewTablet,
+    slidesPerViewMobile,
     spaceBetween
   } = sliderSettings;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
   const swiperRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useRef)(null);
+  const [viewport, setViewport] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)('desktop');
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
+    // Ecouter les changements de vue
+    const unsubscribe = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.subscribe)(() => {
+      const currentViewport = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.select)('core/editor').getDeviceType();
+      if (currentViewport !== viewport) {
+        setViewport(currentViewport);
+      }
+    });
+    return () => unsubscribe();
+  }, [viewport]);
 
   // Détermination de l'état de chargement pour les types de post et les posts
   const {
@@ -111,44 +124,76 @@ function Edit(props) {
     };
   }, [postType, postsPerPage]); // Ajoutez postsPerPage comme dépendance
 
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
-    if (swiperRef.current) {
-      const navigationPrev = swiperRef.current.querySelector('.swiper-button-prev');
-      const navigationNext = swiperRef.current.querySelector('.swiper-button-next');
-      let swiper = new swiper__WEBPACK_IMPORTED_MODULE_6__.Swiper(swiperRef.current, {
-        slidesPerView: slidesPerView,
-        spaceBetween: spaceBetween,
-        navigation: {
-          nextEl: navigationNext,
-          prevEl: navigationPrev
-        },
-        simulateTouch: false,
-        preventClicks: false,
-        preventClicksPropagation: false
-      });
-      if (navigationPrev) {
-        console.log('prev');
-        navigationPrev.addEventListener('click', () => {
-          console.log('prev click');
-          swiper.slidePrev();
-        });
-      }
-      if (navigationNext) {
-        console.log('next');
-        navigationNext.addEventListener('click', () => {
-          console.log('next click');
-          swiper.slideNext();
-        });
-      }
-      return () => {
-        // S'assurer de détruire l'instance de Swiper pour éviter des fuites de mémoire
-        if (swiper) swiper.destroy();
-      };
+  const getSlidesPerView = viewport => {
+    switch (viewport) {
+      case 'Desktop':
+        return slidesPerViewDesktop;
+      case 'Tablet':
+        return slidesPerViewTablet;
+      case 'Mobile':
+        return slidesPerViewMobile;
+      default:
+        return slidesPerViewDesktop;
     }
-  }, [posts, slidesPerView, spaceBetween]); // Réinitialise le swiper chaque fois que les posts changent
-
+  };
+  const getSlidesSpaceBetween = viewport => {
+    switch (viewport) {
+      case 'Desktop':
+        return spaceBetween;
+      case 'Tablet':
+        return spaceBetween;
+      case 'Mobile':
+        return spaceBetween;
+      default:
+        return spaceBetween;
+    }
+  };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
+    if (posts && posts.length > 0 && swiperRef.current) {
+      console.log(Math.min(posts.length, slidesPerViewMobile));
+      if (swiperRef.current) {
+        const navigationPrev = swiperRef.current.querySelector('.swiper-button-prev');
+        const navigationNext = swiperRef.current.querySelector('.swiper-button-next');
+        let swiper = new swiper__WEBPACK_IMPORTED_MODULE_6__.Swiper(swiperRef.current, {
+          slidesPerView: getSlidesPerView(viewport),
+          spaceBetween: getSlidesSpaceBetween(viewport),
+          breakpoints: {
+            1024: {
+              slidesPerView: getSlidesPerView(viewport)
+            },
+            768: {
+              slidesPerView: getSlidesPerView(viewport)
+            },
+            320: {
+              slidesPerView: getSlidesPerView(viewport)
+            }
+          },
+          navigation: {
+            nextEl: navigationNext,
+            prevEl: navigationPrev
+          },
+          simulateTouch: false,
+          preventClicks: false,
+          preventClicksPropagation: false
+        });
+        if (navigationPrev) {
+          navigationPrev.addEventListener('click', () => {
+            swiper.slidePrev();
+          });
+        }
+        if (navigationNext) {
+          navigationNext.addEventListener('click', () => {
+            swiper.slideNext();
+          });
+        }
+        return () => {
+          // S'assurer de détruire l'instance de Swiper pour éviter des fuites de mémoire
+          if (swiper) swiper.destroy();
+        };
+      }
+    }
+  }, [posts, viewport, slidesPerViewDesktop, slidesPerViewTablet, slidesPerViewMobile, spaceBetween]);
   const CardComponent = cardComponents[postType] || _components_card_cardPost__WEBPACK_IMPORTED_MODULE_8__["default"];
-  console.log(props.attributes, "props");
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Réglages requête", _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
@@ -182,19 +227,6 @@ function Edit(props) {
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Réglages Slider", _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Nombre de slide à afficher', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
-    value: slidesPerView,
-    onChange: value => {
-      setAttributes({
-        sliderSettings: {
-          ...sliderSettings,
-          slidesPerView: Number(value)
-        }
-      });
-    },
-    min: 1,
-    max: 10
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Espace entre les slides', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
     value: spaceBetween,
     onChange: value => {
@@ -207,6 +239,72 @@ function Edit(props) {
     },
     min: 0,
     max: 100
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TabPanel, {
+    className: "panel-tab-responsive-settings",
+    activeClass: "active-tab",
+    tabs: [{
+      name: 'desktop',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Desktop', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+      className: 'panel-tab-responsive-settings__desktop-tab',
+      icon: 'desktop'
+    }, {
+      name: 'tablet',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Tablet', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+      className: 'panel-tab-responsive-settings__tablet-tab',
+      icon: 'tablet'
+    }, {
+      name: 'mobile',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Mobile', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+      className: 'panel-tab-responsive-settings__mobile-tab',
+      icon: 'smartphone'
+    }]
+  }, tab => {
+    if (tab.name === 'desktop') {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Nombre de slide à afficher', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+        value: slidesPerViewDesktop,
+        onChange: value => {
+          setAttributes({
+            sliderSettings: {
+              ...sliderSettings,
+              slidesPerViewDesktop: Number(value)
+            }
+          });
+        },
+        min: 1,
+        max: 10
+      }));
+    } else if (tab.name === 'tablet') {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Nombre de slide à afficher', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+        value: slidesPerViewTablet,
+        onChange: value => {
+          setAttributes({
+            sliderSettings: {
+              ...sliderSettings,
+              slidesPerViewTablet: Number(value)
+            }
+          });
+        },
+        min: 1,
+        max: 10
+      }));
+    } else if (tab.name === 'mobile') {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Nombre de slide à afficher', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+        value: slidesPerViewMobile,
+        onChange: value => {
+          setAttributes({
+            sliderSettings: {
+              ...sliderSettings,
+              slidesPerViewMobile: Number(value)
+            }
+          });
+        },
+        min: 1,
+        max: 10
+      }));
+    }
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -10850,7 +10948,7 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"antonin-blocks/swiper","version":"0.0.1","title":"Swiper","category":"antonin","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"align":true},"attributes":{"query":{"type":"object","default":{"postType":"post","postsPerPage":5}},"sliderSettings":{"type":"object","default":{"slidesPerView":3,"spaceBetween":30}}},"textdomain":"antonin-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"antonin-blocks/swiper","version":"0.0.1","title":"Swiper","category":"antonin","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"align":true},"attributes":{"query":{"type":"object","default":{"postType":"post","postsPerPage":5}},"sliderSettings":{"type":"object","default":{"slidesPerViewDesktop":3,"slidesPerViewTablet":2,"slidesPerViewMobile":1,"spaceBetween":30}}},"textdomain":"antonin-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
 
 /***/ })
 

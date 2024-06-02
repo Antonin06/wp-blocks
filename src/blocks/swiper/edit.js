@@ -3,7 +3,7 @@ import {
 	useBlockProps,
 	InspectorControls,
 } from "@wordpress/block-editor";
-import { useSelect } from "@wordpress/data";
+import {select, subscribe, useSelect} from "@wordpress/data";
 import {PanelBody, SelectControl, Spinner, RangeControl, TabPanel} from "@wordpress/components";
 import {useEffect, useRef, useState} from '@wordpress/element';
 
@@ -29,10 +29,23 @@ export default function Edit(props) {
 	const { attributes, setAttributes } = props;
 	const { query, sliderSettings } = attributes;
 	const { postType, postsPerPage } = query;
-	const { slidesPerView, spaceBetween } = sliderSettings;
+	const { slidesPerViewDesktop, slidesPerViewTablet, slidesPerViewMobile, spaceBetween } = sliderSettings;
 
 	const blockProps = useBlockProps();
 	const swiperRef = useRef(null);
+	const [viewport, setViewport] = useState('desktop');
+
+	useEffect(() => {
+		// Ecouter les changements de vue
+		const unsubscribe = subscribe(() => {
+			const currentViewport = select( 'core/editor' ).getDeviceType();
+			if (currentViewport !== viewport) {
+				setViewport(currentViewport);
+			}
+		});
+
+		return () => unsubscribe();
+	}, [viewport]);
 
 	// Détermination de l'état de chargement pour les types de post et les posts
 	const { postTypes } = useSelect((select) => {
@@ -53,48 +66,85 @@ export default function Edit(props) {
 		return { posts: data, isLoadingPosts: isLoading };
 	}, [postType, postsPerPage]); // Ajoutez postsPerPage comme dépendance
 
-	useEffect(() => {
-		if (swiperRef.current) {
-			const navigationPrev = swiperRef.current.querySelector('.swiper-button-prev');
-			const navigationNext = swiperRef.current.querySelector('.swiper-button-next');
-			let swiper = new Swiper(swiperRef.current, {
-				slidesPerView: slidesPerView,
-				spaceBetween: spaceBetween,
-				navigation: {
-					nextEl: navigationNext,
-					prevEl: navigationPrev,
-				},
-				simulateTouch: false,
-				preventClicks: false,
-				preventClicksPropagation: false,
-			});
-
-			if (navigationPrev) {
-				console.log('prev')
-				navigationPrev.addEventListener('click', () => {
-					console.log('prev click')
-					swiper.slidePrev();
-				});
-			}
-			if (navigationNext) {
-				console.log('next')
-				navigationNext.addEventListener('click', () => {
-					console.log('next click')
-					swiper.slideNext();
-				});
-			}
-
-			return () => {
-				// S'assurer de détruire l'instance de Swiper pour éviter des fuites de mémoire
-				if (swiper) swiper.destroy();
-			};
+	const getSlidesPerView = (viewport) => {
+		switch (viewport) {
+			case 'Desktop':
+				return slidesPerViewDesktop;
+			case 'Tablet':
+				return slidesPerViewTablet;
+			case 'Mobile':
+				return slidesPerViewMobile;
+			default:
+				return slidesPerViewDesktop;
 		}
-	}, [posts, slidesPerView, spaceBetween]); // Réinitialise le swiper chaque fois que les posts changent
+	};
+
+	const getSlidesSpaceBetween = (viewport) => {
+		switch (viewport) {
+			case 'Desktop':
+				return spaceBetween;
+			case 'Tablet':
+				return spaceBetween;
+			case 'Mobile':
+				return spaceBetween;
+			default:
+				return spaceBetween;
+		}
+	}
+
+
+	useEffect(() => {
+		if (posts && posts.length > 0 && swiperRef.current) {
+			console.log(Math.min(posts.length, slidesPerViewMobile))
+			if (swiperRef.current) {
+				const navigationPrev = swiperRef.current.querySelector('.swiper-button-prev');
+				const navigationNext = swiperRef.current.querySelector('.swiper-button-next');
+				let swiper = new Swiper(swiperRef.current, {
+					slidesPerView: getSlidesPerView(viewport),
+					spaceBetween: getSlidesSpaceBetween(viewport),
+					breakpoints: {
+						1024: {
+							slidesPerView: getSlidesPerView(viewport),
+						},
+						768: {
+							slidesPerView: getSlidesPerView(viewport),
+						},
+						320: {
+							slidesPerView: getSlidesPerView(viewport),
+						},
+					},
+					navigation: {
+						nextEl: navigationNext,
+						prevEl: navigationPrev,
+					},
+					simulateTouch: false,
+					preventClicks: false,
+					preventClicksPropagation: false,
+				});
+
+				if (navigationPrev) {
+					navigationPrev.addEventListener('click', () => {
+						swiper.slidePrev();
+					});
+				}
+				if (navigationNext) {
+					navigationNext.addEventListener('click', () => {
+						swiper.slideNext();
+					});
+				}
+
+				return () => {
+					// S'assurer de détruire l'instance de Swiper pour éviter des fuites de mémoire
+					if (swiper) swiper.destroy();
+				};
+			}
+		}
+	}, [posts, viewport, slidesPerViewDesktop, slidesPerViewTablet, slidesPerViewMobile, spaceBetween]);
+
 
 
 	const CardComponent = cardComponents[postType] || PostCard;
 
-	console.log(props.attributes, "props");
 	return (
 		<>
 			<InspectorControls>
@@ -134,20 +184,6 @@ export default function Edit(props) {
 				</PanelBody>
 				<PanelBody title={__("Réglages Slider", metadata.textdomain)}>
 					<RangeControl
-						label={__('Nombre de slide à afficher', metadata.textdomain)}
-						value={slidesPerView}
-						onChange={(value) => {
-							setAttributes({
-								sliderSettings: {
-									...sliderSettings,
-									slidesPerView: Number(value)
-								}
-							});
-						}}
-						min={1}
-						max={10}
-					/>
-					<RangeControl
 						label={__('Espace entre les slides', metadata.textdomain)}
 						value={spaceBetween}
 						onChange={(value) => {
@@ -161,6 +197,76 @@ export default function Edit(props) {
 						min={0}
 						max={100}
 					/>
+					<TabPanel
+						className="panel-tab-responsive-settings"
+						activeClass="active-tab"
+						tabs={[
+							{ name: 'desktop', title: __('Desktop', metadata.textdomain), className: 'panel-tab-responsive-settings__desktop-tab', icon: 'desktop'},
+							{ name: 'tablet', title: __('Tablet', metadata.textdomain), className: 'panel-tab-responsive-settings__tablet-tab', icon: 'tablet'},
+							{ name: 'mobile', title: __('Mobile', metadata.textdomain), className: 'panel-tab-responsive-settings__mobile-tab', icon: 'smartphone'},
+						]}
+					>
+						{(tab) => {
+							if (tab.name === 'desktop') {
+								return (
+									<>
+										<RangeControl
+											label={__('Nombre de slide à afficher', metadata.textdomain)}
+											value={slidesPerViewDesktop}
+											onChange={(value) => {
+												setAttributes({
+													sliderSettings: {
+														...sliderSettings,
+														slidesPerViewDesktop: Number(value)
+													}
+												});
+											}}
+											min={1}
+											max={10}
+										/>
+									</>
+								);
+							} else if (tab.name === 'tablet') {
+								return (
+									<>
+										<RangeControl
+											label={__('Nombre de slide à afficher', metadata.textdomain)}
+											value={slidesPerViewTablet}
+											onChange={(value) => {
+												setAttributes({
+													sliderSettings: {
+														...sliderSettings,
+														slidesPerViewTablet: Number(value)
+													}
+												});
+											}}
+											min={1}
+											max={10}
+										/>
+									</>
+								);
+							} else if (tab.name === 'mobile') {
+								return (
+									<>
+										<RangeControl
+											label={__('Nombre de slide à afficher', metadata.textdomain)}
+											value={slidesPerViewMobile}
+											onChange={(value) => {
+												setAttributes({
+													sliderSettings: {
+														...sliderSettings,
+														slidesPerViewMobile: Number(value)
+													}
+												});
+											}}
+											min={1}
+											max={10}
+										/>
+									</>
+								);
+							}
+						}}
+					</TabPanel>
 				</PanelBody>
 			</InspectorControls>
 

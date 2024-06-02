@@ -22,6 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class AntoninBlocks
 {
+
+	public const TextDomain = 'antonin-blocks';
 	static function init(): void
 	{
 
@@ -36,6 +38,26 @@ class AntoninBlocks
 
 			register_block_type( __DIR__ . '/build/blocks/swiper' );
 		});
+	}
+
+	public static function getThePostThumbnail($postID): string
+	{
+		$thumbnail = get_the_post_thumbnail($postID, 'medium', ['class' => 'card-post__thumbnail']);
+		if(!$thumbnail) {
+			$thumbnail = '<img class="card-post__thumbnail" src="https://via.placeholder.com/150" alt="Placeholder image" />';
+		}
+		return $thumbnail;
+	}
+
+	public static function getThePostCategory($postID): string
+	{
+		$categories = get_the_terms($postID, 'category');
+		if(!$categories) {
+			return '';
+		}
+		$category = $categories[0];
+
+		return "<a class='card-post__category' href='" . get_term_link($category) . "'>" . $category->name . "</a>";
 	}
 }
 

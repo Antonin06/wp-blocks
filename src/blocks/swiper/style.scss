@@ -11,17 +11,14 @@
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 
-.wp-block-create-block-antonin-blocks {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+.wp-block-antonin-blocks-swiper {
+	position: relative;
+	overflow: hidden;
 }
 
 .swiper-container {
 	padding: 10px;
 }
-
-
 
 .card-post {
 	position: relative;
