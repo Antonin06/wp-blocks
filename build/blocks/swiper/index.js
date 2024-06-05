@@ -70,7 +70,9 @@ function Edit(props) {
     slidesPerViewDesktop,
     slidesPerViewTablet,
     slidesPerViewMobile,
-    spaceBetween
+    spaceBetweenDesktop,
+    spaceBetweenTablet,
+    spaceBetweenMobile
   } = sliderSettings;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
   const swiperRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useRef)(null);
@@ -139,18 +141,17 @@ function Edit(props) {
   const getSlidesSpaceBetween = viewport => {
     switch (viewport) {
       case 'Desktop':
-        return spaceBetween;
+        return spaceBetweenDesktop;
       case 'Tablet':
-        return spaceBetween;
+        return spaceBetweenTablet;
       case 'Mobile':
-        return spaceBetween;
+        return spaceBetweenMobile;
       default:
-        return spaceBetween;
+        return spaceBetweenDesktop;
     }
   };
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
     if (posts && posts.length > 0 && swiperRef.current) {
-      console.log(Math.min(posts.length, slidesPerViewMobile));
       if (swiperRef.current) {
         const navigationPrev = swiperRef.current.querySelector('.swiper-button-prev');
         const navigationNext = swiperRef.current.querySelector('.swiper-button-next');
@@ -159,13 +160,16 @@ function Edit(props) {
           spaceBetween: getSlidesSpaceBetween(viewport),
           breakpoints: {
             1024: {
-              slidesPerView: getSlidesPerView(viewport)
+              slidesPerView: getSlidesPerView(viewport),
+              spaceBetween: getSlidesSpaceBetween(viewport)
             },
             768: {
-              slidesPerView: getSlidesPerView(viewport)
+              slidesPerView: getSlidesPerView(viewport),
+              spaceBetween: getSlidesSpaceBetween(viewport)
             },
             320: {
-              slidesPerView: getSlidesPerView(viewport)
+              slidesPerView: getSlidesPerView(viewport),
+              spaceBetween: getSlidesSpaceBetween(viewport)
             }
           },
           navigation: {
@@ -192,7 +196,7 @@ function Edit(props) {
         };
       }
     }
-  }, [posts, viewport, slidesPerViewDesktop, slidesPerViewTablet, slidesPerViewMobile, spaceBetween]);
+  }, [posts, viewport, slidesPerViewDesktop, slidesPerViewTablet, slidesPerViewMobile, spaceBetweenDesktop, spaceBetweenTablet, spaceBetweenMobile]);
   const CardComponent = cardComponents[postType] || _components_card_cardPost__WEBPACK_IMPORTED_MODULE_8__["default"];
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Réglages requête", _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain)
@@ -226,20 +230,7 @@ function Edit(props) {
     max: 10
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Réglages Slider", _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain)
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Espace entre les slides', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
-    value: spaceBetween,
-    onChange: value => {
-      setAttributes({
-        sliderSettings: {
-          ...sliderSettings,
-          spaceBetween: Number(value)
-        }
-      });
-    },
-    min: 0,
-    max: 100
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TabPanel, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TabPanel, {
     className: "panel-tab-responsive-settings",
     activeClass: "active-tab",
     tabs: [{
@@ -273,6 +264,19 @@ function Edit(props) {
         },
         min: 1,
         max: 10
+      }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Espace entre les slides', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+        value: spaceBetweenDesktop,
+        onChange: value => {
+          setAttributes({
+            sliderSettings: {
+              ...sliderSettings,
+              spaceBetweenDesktop: Number(value)
+            }
+          });
+        },
+        min: 0,
+        max: 100
       }));
     } else if (tab.name === 'tablet') {
       return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
@@ -288,6 +292,19 @@ function Edit(props) {
         },
         min: 1,
         max: 10
+      }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Espace entre les slides', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+        value: spaceBetweenTablet,
+        onChange: value => {
+          setAttributes({
+            sliderSettings: {
+              ...sliderSettings,
+              spaceBetweenTablet: Number(value)
+            }
+          });
+        },
+        min: 0,
+        max: 100
       }));
     } else if (tab.name === 'mobile') {
       return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
@@ -303,6 +320,19 @@ function Edit(props) {
         },
         min: 1,
         max: 10
+      }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Espace entre les slides', _block_json__WEBPACK_IMPORTED_MODULE_11__.textdomain),
+        value: spaceBetweenMobile,
+        onChange: value => {
+          setAttributes({
+            sliderSettings: {
+              ...sliderSettings,
+              spaceBetweenMobile: Number(value)
+            }
+          });
+        },
+        min: 0,
+        max: 100
       }));
     }
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -10948,7 +10978,7 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"antonin-blocks/swiper","version":"0.0.1","title":"Swiper","category":"antonin","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"align":true},"attributes":{"query":{"type":"object","default":{"postType":"post","postsPerPage":5}},"sliderSettings":{"type":"object","default":{"slidesPerViewDesktop":3,"slidesPerViewTablet":2,"slidesPerViewMobile":1,"spaceBetween":30}}},"textdomain":"antonin-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"antonin-blocks/swiper","version":"0.0.1","title":"Swiper","category":"antonin","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"align":true},"attributes":{"query":{"type":"object","default":{"postType":"post","postsPerPage":5}},"sliderSettings":{"type":"object","default":{"slidesPerViewDesktop":3,"slidesPerViewTablet":2,"slidesPerViewMobile":1,"spaceBetweenDesktop":30,"spaceBetweenTablet":20,"spaceBetweenMobile":10}}},"textdomain":"antonin-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
 
 /***/ })
 

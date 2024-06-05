@@ -2,7 +2,6 @@
 // This comment needed to avoid PHP undefined variable
 /** @var array $attributes */
 
-
 // Query Attributes
 $queryAttrs = $attributes['query'] ?? [];
 $postType = $queryAttrs['postType'] ?? 'post';
@@ -13,7 +12,10 @@ $sliderAttrs = $attributes['sliderSettings'] ?? [];
 $slidesPerViewDesktop = $sliderAttrs['slidesPerViewDesktop'] ?? 3;
 $slidesPerViewTablet = $sliderAttrs['slidesPerViewTablet'] ?? 2;
 $slidesPerViewMobile = $sliderAttrs['slidesPerViewMobile'] ?? 1;
-$spaceBetween = $sliderAttrs['spaceBetween'] ?? 10;
+$spaceBetweenDesktop = $sliderAttrs['spaceBetweenDesktop'] ?? 10;
+$spaceBetweenTablet = $sliderAttrs['spaceBetweenTablet'] ?? 10;
+$spaceBetweenMobile = $sliderAttrs['spaceBetweenMobile'] ?? 10;
+
 
 // Query Posts - Get the attributes from the block editor
 $query = new WP_Query([
@@ -27,7 +29,9 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 			"slidesPerViewDesktop" => esc_attr($slidesPerViewDesktop),
 			"slidesPerViewTablet" => esc_attr($slidesPerViewTablet),
 			"slidesPerViewMobile" => esc_attr($slidesPerViewMobile),
-			"spaceBetween" => esc_attr($spaceBetween)
+			"spaceBetweenDesktop" => esc_attr($spaceBetweenDesktop),
+			"spaceBetweenTablet" => esc_attr($spaceBetweenTablet),
+			"spaceBetweenMobile" => esc_attr($spaceBetweenMobile),
 		])
 	]
 );

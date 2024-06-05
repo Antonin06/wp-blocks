@@ -10448,7 +10448,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper_modules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swiper/modules */ "./node_modules/swiper/modules/index.mjs");
 
 
-console.log('Hello World! (from create-block-antonin-blocks block)');
 swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination]);
 const swiperBlocks = document.querySelectorAll('.wp-block-antonin-blocks-swiper');
 if (swiperBlocks.length) {
@@ -10460,18 +10459,21 @@ if (swiperBlocks.length) {
     const sliderSettings = JSON.parse(swiperBlock.dataset.swiper);
     const swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](swiperContainer, {
       slidesPerView: sliderSettings.slidesPerViewMobile,
-      spaceBetween: sliderSettings.spaceBetween,
-      // breakpoints: {
-      // 	1024: {
-      // 		slidesPerView: sliderSettings.slidesPerViewDesktop,
-      // 	},
-      // 	768: {
-      // 		slidesPerView: sliderSettings.slidesPerViewTablet,
-      // 	},
-      // 	320: {
-      // 		slidesPerView: sliderSettings.slidesPerViewMobile,
-      // 	},
-      // },
+      spaceBetween: sliderSettings.spaceBetweenMobile,
+      breakpoints: {
+        1024: {
+          slidesPerView: sliderSettings.slidesPerViewDesktop,
+          spaceBetween: sliderSettings.spaceBetweenDesktop
+        },
+        768: {
+          slidesPerView: sliderSettings.slidesPerViewTablet,
+          spaceBetween: sliderSettings.spaceBetweenTablet
+        },
+        320: {
+          slidesPerView: sliderSettings.slidesPerViewMobile,
+          spaceBetween: sliderSettings.spaceBetweenMobile
+        }
+      },
       navigation: {
         nextEl: swiperBlock.querySelector('.swiper-button-next'),
         prevEl: swiperBlock.querySelector('.swiper-button-prev')

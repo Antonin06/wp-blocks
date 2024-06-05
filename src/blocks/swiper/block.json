@@ -26,7 +26,9 @@
 				"slidesPerViewDesktop": 3,
 				"slidesPerViewTablet": 2,
 				"slidesPerViewMobile": 1,
-				"spaceBetween": 30
+				"spaceBetweenDesktop": 30,
+				"spaceBetweenTablet": 20,
+				"spaceBetweenMobile": 10
 			}
 		}
 	},

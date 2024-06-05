@@ -29,7 +29,7 @@ export default function Edit(props) {
 	const { attributes, setAttributes } = props;
 	const { query, sliderSettings } = attributes;
 	const { postType, postsPerPage } = query;
-	const { slidesPerViewDesktop, slidesPerViewTablet, slidesPerViewMobile, spaceBetween } = sliderSettings;
+	const { slidesPerViewDesktop, slidesPerViewTablet, slidesPerViewMobile, spaceBetweenDesktop, spaceBetweenTablet, spaceBetweenMobile } = sliderSettings;
 
 	const blockProps = useBlockProps();
 	const swiperRef = useRef(null);
@@ -82,20 +82,18 @@ export default function Edit(props) {
 	const getSlidesSpaceBetween = (viewport) => {
 		switch (viewport) {
 			case 'Desktop':
-				return spaceBetween;
+				return spaceBetweenDesktop;
 			case 'Tablet':
-				return spaceBetween;
+				return spaceBetweenTablet;
 			case 'Mobile':
-				return spaceBetween;
+				return spaceBetweenMobile;
 			default:
-				return spaceBetween;
+				return spaceBetweenDesktop;
 		}
 	}
 
-
 	useEffect(() => {
 		if (posts && posts.length > 0 && swiperRef.current) {
-			console.log(Math.min(posts.length, slidesPerViewMobile))
 			if (swiperRef.current) {
 				const navigationPrev = swiperRef.current.querySelector('.swiper-button-prev');
 				const navigationNext = swiperRef.current.querySelector('.swiper-button-next');
@@ -105,12 +103,15 @@ export default function Edit(props) {
 					breakpoints: {
 						1024: {
 							slidesPerView: getSlidesPerView(viewport),
+							spaceBetween: getSlidesSpaceBetween(viewport),
 						},
 						768: {
 							slidesPerView: getSlidesPerView(viewport),
+							spaceBetween: getSlidesSpaceBetween(viewport),
 						},
 						320: {
 							slidesPerView: getSlidesPerView(viewport),
+							spaceBetween: getSlidesSpaceBetween(viewport),
 						},
 					},
 					navigation: {
@@ -139,9 +140,7 @@ export default function Edit(props) {
 				};
 			}
 		}
-	}, [posts, viewport, slidesPerViewDesktop, slidesPerViewTablet, slidesPerViewMobile, spaceBetween]);
-
-
+	}, [posts, viewport, slidesPerViewDesktop, slidesPerViewTablet, slidesPerViewMobile, spaceBetweenDesktop, spaceBetweenTablet, spaceBetweenMobile]);
 
 	const CardComponent = cardComponents[postType] || PostCard;
 
@@ -183,20 +182,7 @@ export default function Edit(props) {
 					/>
 				</PanelBody>
 				<PanelBody title={__("Réglages Slider", metadata.textdomain)}>
-					<RangeControl
-						label={__('Espace entre les slides', metadata.textdomain)}
-						value={spaceBetween}
-						onChange={(value) => {
-							setAttributes({
-								sliderSettings: {
-									...sliderSettings,
-									spaceBetween: Number(value)
-								}
-							});
-						}}
-						min={0}
-						max={100}
-					/>
+
 					<TabPanel
 						className="panel-tab-responsive-settings"
 						activeClass="active-tab"
@@ -224,6 +210,20 @@ export default function Edit(props) {
 											min={1}
 											max={10}
 										/>
+										<RangeControl
+											label={__('Espace entre les slides', metadata.textdomain)}
+											value={spaceBetweenDesktop}
+											onChange={(value) => {
+												setAttributes({
+													sliderSettings: {
+														...sliderSettings,
+														spaceBetweenDesktop: Number(value)
+													}
+												});
+											}}
+											min={0}
+											max={100}
+										/>
 									</>
 								);
 							} else if (tab.name === 'tablet') {
@@ -243,6 +243,20 @@ export default function Edit(props) {
 											min={1}
 											max={10}
 										/>
+										<RangeControl
+											label={__('Espace entre les slides', metadata.textdomain)}
+											value={spaceBetweenTablet}
+											onChange={(value) => {
+												setAttributes({
+													sliderSettings: {
+														...sliderSettings,
+														spaceBetweenTablet: Number(value)
+													}
+												});
+											}}
+											min={0}
+											max={100}
+										/>
 									</>
 								);
 							} else if (tab.name === 'mobile') {
@@ -261,6 +275,20 @@ export default function Edit(props) {
 											}}
 											min={1}
 											max={10}
+										/>
+										<RangeControl
+											label={__('Espace entre les slides', metadata.textdomain)}
+											value={spaceBetweenMobile}
+											onChange={(value) => {
+												setAttributes({
+													sliderSettings: {
+														...sliderSettings,
+														spaceBetweenMobile: Number(value)
+													}
+												});
+											}}
+											min={0}
+											max={100}
 										/>
 									</>
 								);
