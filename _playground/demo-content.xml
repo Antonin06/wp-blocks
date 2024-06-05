@@ -16,7 +16,7 @@
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-	<!-- generator="WordPress/6.6-alpha-58268" created="2024-05-31 12:14" -->
+	<!-- generator="WordPress/6.6-alpha-58237" created="2024-06-05 22:23" -->
 <rss version="2.0"
 	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -26,10 +26,10 @@
 >
 
 <channel>
-	<title>wp-blocks</title>
+	<title>antonin-blocks</title>
 	<link>http://localhost:8888</link>
 	<description></description>
-	<pubDate>Fri, 31 May 2024 12:14:30 +0000</pubDate>
+	<pubDate>Wed, 05 Jun 2024 22:23:38 +0000</pubDate>
 	<language>en-US</language>
 	<wp:wxr_version>1.2</wp:wxr_version>
 	<wp:base_site_url>http://localhost:8888</wp:base_site_url>
@@ -58,24 +58,22 @@
 		<wp:term_name><![CDATA[Uncategorized]]></wp:term_name>
 	</wp:term>
 		
-	<generator>https://wordpress.org/?v=6.6-alpha-58268</generator>
+	<generator>https://wordpress.org/?v=6.6-alpha-58237</generator>
 
 		<item>
 		<title><![CDATA[Hello world!]]></title>
-		<link>http://localhost:8888/?p=1</link>
-		<pubDate>Fri, 31 May 2024 12:02:33 +0000</pubDate>
+		<link>http://localhost:8888/hello-world/</link>
+		<pubDate>Wed, 29 May 2024 20:39:30 +0000</pubDate>
 		<dc:creator><![CDATA[admin]]></dc:creator>
 		<guid isPermaLink="false">http://localhost:8888/?p=1</guid>
 		<description></description>
-		<content:encoded><![CDATA[<!-- wp:paragraph -->
-<p>Welcome to WordPress. This is your first post. Edit or delete it, then start writing!</p>
-<!-- /wp:paragraph -->]]></content:encoded>
+		<content:encoded><![CDATA[]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>1</wp:post_id>
-		<wp:post_date><![CDATA[2024-05-31 12:02:33]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-05-31 12:02:33]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-05-31 12:02:33]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-05-31 12:02:33]]></wp:post_modified_gmt>
+		<wp:post_date><![CDATA[2024-05-29 20:39:30]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-05-29 20:39:30]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-05-29 21:15:14]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-05-29 21:15:14]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
 		<wp:post_name><![CDATA[hello-world]]></wp:post_name>
@@ -86,14 +84,22 @@
 		<wp:post_password><![CDATA[]]></wp:post_password>
 		<wp:is_sticky>0</wp:is_sticky>
 										<category domain="category" nicename="uncategorized"><![CDATA[Uncategorized]]></category>
-						<wp:comment>
+						<wp:postmeta>
+		<wp:meta_key><![CDATA[_pingme]]></wp:meta_key>
+		<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_encloseme]]></wp:meta_key>
+		<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:comment>
 			<wp:comment_id>1</wp:comment_id>
 			<wp:comment_author><![CDATA[A WordPress Commenter]]></wp:comment_author>
 			<wp:comment_author_email><![CDATA[wapuu@wordpress.example]]></wp:comment_author_email>
 			<wp:comment_author_url>https://wordpress.org/</wp:comment_author_url>
 			<wp:comment_author_IP><![CDATA[]]></wp:comment_author_IP>
-			<wp:comment_date><![CDATA[2024-05-31 12:02:33]]></wp:comment_date>
-			<wp:comment_date_gmt><![CDATA[2024-05-31 12:02:33]]></wp:comment_date_gmt>
+			<wp:comment_date><![CDATA[2024-05-29 20:39:30]]></wp:comment_date>
+			<wp:comment_date_gmt><![CDATA[2024-05-29 20:39:30]]></wp:comment_date_gmt>
 			<wp:comment_content><![CDATA[Hi, this is a comment.
 To get started with moderating, editing, and deleting comments, please visit the Comments screen in the dashboard.
 Commenter avatars come from <a href="https://en.gravatar.com/">Gravatar</a>.]]></wp:comment_content>
@@ -105,8 +111,8 @@ Commenter avatars come from <a href="https://en.gravatar.com/">Gravatar</a>.]]><
 					</item>
 					<item>
 		<title><![CDATA[Sample Page]]></title>
-		<link>http://localhost:8888/?page_id=2</link>
-		<pubDate>Fri, 31 May 2024 12:02:33 +0000</pubDate>
+		<link>http://localhost:8888/sample-page/</link>
+		<pubDate>Wed, 29 May 2024 20:39:30 +0000</pubDate>
 		<dc:creator><![CDATA[admin]]></dc:creator>
 		<guid isPermaLink="false">http://localhost:8888/?page_id=2</guid>
 		<description></description>
@@ -131,10 +137,10 @@ Commenter avatars come from <a href="https://en.gravatar.com/">Gravatar</a>.]]><
 <!-- /wp:paragraph -->]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>2</wp:post_id>
-		<wp:post_date><![CDATA[2024-05-31 12:02:33]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-05-31 12:02:33]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-05-31 12:02:33]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-05-31 12:02:33]]></wp:post_modified_gmt>
+		<wp:post_date><![CDATA[2024-05-29 20:39:30]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-05-29 20:39:30]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-05-29 20:39:30]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-05-29 20:39:30]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
 		<wp:post_name><![CDATA[sample-page]]></wp:post_name>
@@ -152,7 +158,7 @@ Commenter avatars come from <a href="https://en.gravatar.com/">Gravatar</a>.]]><
 					<item>
 		<title><![CDATA[Privacy Policy]]></title>
 		<link>http://localhost:8888/?page_id=3</link>
-		<pubDate>Fri, 31 May 2024 12:02:33 +0000</pubDate>
+		<pubDate>Wed, 29 May 2024 20:39:30 +0000</pubDate>
 		<dc:creator><![CDATA[admin]]></dc:creator>
 		<guid isPermaLink="false">http://localhost:8888/?page_id=3</guid>
 		<description></description>
@@ -231,10 +237,10 @@ Commenter avatars come from <a href="https://en.gravatar.com/">Gravatar</a>.]]><
 ]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>3</wp:post_id>
-		<wp:post_date><![CDATA[2024-05-31 12:02:33]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-05-31 12:02:33]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-05-31 12:02:33]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-05-31 12:02:33]]></wp:post_modified_gmt>
+		<wp:post_date><![CDATA[2024-05-29 20:39:30]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-05-29 20:39:30]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-05-29 20:39:30]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-05-29 20:39:30]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
 		<wp:post_name><![CDATA[privacy-policy]]></wp:post_name>
@@ -250,19 +256,128 @@ Commenter avatars come from <a href="https://en.gravatar.com/">Gravatar</a>.]]><
 		</wp:postmeta>
 							</item>
 					<item>
-		<title><![CDATA[Navigation]]></title>
-		<link>http://localhost:8888/?p=4</link>
-		<pubDate>Fri, 31 May 2024 12:06:03 +0000</pubDate>
-		<dc:creator><![CDATA[]]></dc:creator>
+		<title><![CDATA[Custom Styles]]></title>
+		<link>http://localhost:8888/wp-global-styles-twentytwentyfour/</link>
+		<pubDate>Wed, 29 May 2024 20:44:03 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
 		<guid isPermaLink="false">http://localhost:8888/?p=4</guid>
+		<description></description>
+		<content:encoded><![CDATA[{"version": 2, "isGlobalStylesUserThemeJSON": true }]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>4</wp:post_id>
+		<wp:post_date><![CDATA[2024-05-29 20:44:03]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-05-29 20:44:03]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-05-29 20:44:03]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-05-29 20:44:03]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[wp-global-styles-twentytwentyfour]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[wp_global_styles]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+										<category domain="wp_theme" nicename="twentytwentyfour"><![CDATA[twentytwentyfour]]></category>
+						</item>
+					<item>
+		<title><![CDATA[Les blocks]]></title>
+		<link>http://localhost:8888/les-blocks/</link>
+		<pubDate>Wed, 29 May 2024 21:16:19 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://localhost:8888/?page_id=10</guid>
+		<description></description>
+		<content:encoded><![CDATA[<!-- wp:heading {"textAlign":"center"} -->
+<h2 class="wp-block-heading has-text-align-center"><strong>Slider de posts</strong></h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading"><em>Features</em> 😏</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><em>Choix du post type</em></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><em>Options responsive du slider (desktop/tablet/mobile)</em></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><em>Réactif au changement de "DeviceType" dans l'éditeur</em></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3,"className":"is-style-default"} -->
+<h3 class="wp-block-heading is-style-default"><em>Todo</em> 👀</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><em>Rendu dynamique des cards associées aux posts</em></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><em>Affichage ScrollBar + Pagination + Navigation (bool)</em></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading"><em>Next Step</em> 🔥</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><em>Page Options pour paramétrer visuellement la scrollbar, la pagination, la navigation via des post meta et des presets  - 🔥🔥🔥</em></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:antonin-blocks/swiper {"query":{"postType":"post","postsPerPage":4},"sliderSettings":{"slidesPerViewDesktop":3,"slidesPerViewTablet":2,"slidesPerViewMobile":2,"spaceBetweenDesktop":25,"spaceBetweenTablet":20,"spaceBetweenMobile":15},"align":"wide"} /-->
+
+<!-- wp:antonin-blocks/swiper {"query":{"postType":"page","postsPerPage":5},"sliderSettings":{"slidesPerViewDesktop":2,"slidesPerViewTablet":2,"slidesPerViewMobile":1,"spaceBetweenDesktop":20,"spaceBetweenTablet":20,"spaceBetweenMobile":10},"align":"wide"} /-->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>10</wp:post_id>
+		<wp:post_date><![CDATA[2024-05-29 21:16:19]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-05-29 21:16:19]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-06-05 22:22:23]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-06-05 22:22:23]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[les-blocks]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+														<wp:postmeta>
+		<wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+		<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[footnotes]]></wp:meta_key>
+		<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+							</item>
+					<item>
+		<title><![CDATA[Navigation]]></title>
+		<link>http://localhost:8888/navigation/</link>
+		<pubDate>Wed, 29 May 2024 21:16:21 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://localhost:8888/?p=12</guid>
 		<description></description>
 		<content:encoded><![CDATA[<!-- wp:page-list /-->]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>4</wp:post_id>
-		<wp:post_date><![CDATA[2024-05-31 12:06:03]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-05-31 12:06:03]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-05-31 12:06:03]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-05-31 12:06:03]]></wp:post_modified_gmt>
+		<wp:post_id>12</wp:post_id>
+		<wp:post_date><![CDATA[2024-05-29 21:16:21]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-05-29 21:16:21]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-05-29 21:16:21]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-05-29 21:16:21]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[navigation]]></wp:post_name>
@@ -274,23 +389,23 @@ Commenter avatars come from <a href="https://en.gravatar.com/">Gravatar</a>.]]><
 		<wp:is_sticky>0</wp:is_sticky>
 														</item>
 					<item>
-		<title><![CDATA[Modern Wordpress Blocks]]></title>
-		<link>http://localhost:8888/?p=6</link>
-		<pubDate>Fri, 31 May 2024 12:07:15 +0000</pubDate>
+		<title><![CDATA[Hello world 1]]></title>
+		<link>http://localhost:8888/hello-world-1/</link>
+		<pubDate>Thu, 30 May 2024 21:10:58 +0000</pubDate>
 		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://localhost:8888/?p=6</guid>
+		<guid isPermaLink="false">http://localhost:8888/?p=17</guid>
 		<description></description>
-		<content:encoded><![CDATA[<!-- wp:antonin-blocks/swiper /-->]]></content:encoded>
+		<content:encoded><![CDATA[]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>6</wp:post_id>
-		<wp:post_date><![CDATA[2024-05-31 12:07:15]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-05-31 12:07:15]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-05-31 12:07:55]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-05-31 12:07:55]]></wp:post_modified_gmt>
+		<wp:post_id>17</wp:post_id>
+		<wp:post_date><![CDATA[2024-05-30 21:10:58]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-05-30 21:10:58]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-05-30 21:10:58]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-05-30 21:10:58]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
-		<wp:post_name><![CDATA[modern-wordpress-blocks__trashed]]></wp:post_name>
-		<wp:status><![CDATA[trash]]></wp:status>
+		<wp:post_name><![CDATA[hello-world-1]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
 		<wp:post_parent>0</wp:post_parent>
 		<wp:menu_order>0</wp:menu_order>
 		<wp:post_type><![CDATA[post]]></wp:post_type>
@@ -305,88 +420,21 @@ Commenter avatars come from <a href="https://en.gravatar.com/">Gravatar</a>.]]><
 		<wp:meta_key><![CDATA[_encloseme]]></wp:meta_key>
 		<wp:meta_value><![CDATA[1]]></wp:meta_value>
 		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_wp_trash_meta_status]]></wp:meta_key>
-		<wp:meta_value><![CDATA[publish]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_wp_trash_meta_time]]></wp:meta_key>
-		<wp:meta_value><![CDATA[1717157275]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_wp_desired_post_slug]]></wp:meta_key>
-		<wp:meta_value><![CDATA[modern-wordpress-blocks]]></wp:meta_value>
-		</wp:postmeta>
 							</item>
 					<item>
-		<title><![CDATA[Custom Styles]]></title>
-		<link>http://localhost:8888/?p=7</link>
-		<pubDate>Fri, 31 May 2024 12:06:31 +0000</pubDate>
+		<title><![CDATA[Hello world 2]]></title>
+		<link>http://localhost:8888/hello-world-2/</link>
+		<pubDate>Thu, 30 May 2024 21:11:07 +0000</pubDate>
 		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://localhost:8888/?p=7</guid>
+		<guid isPermaLink="false">http://localhost:8888/?p=19</guid>
 		<description></description>
-		<content:encoded><![CDATA[{"version": 2, "isGlobalStylesUserThemeJSON": true }]]></content:encoded>
+		<content:encoded><![CDATA[]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>7</wp:post_id>
-		<wp:post_date><![CDATA[2024-05-31 12:06:31]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-05-31 12:06:31]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-05-31 12:06:31]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-05-31 12:06:31]]></wp:post_modified_gmt>
-		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
-		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
-		<wp:post_name><![CDATA[wp-global-styles-twentytwentyfour]]></wp:post_name>
-		<wp:status><![CDATA[publish]]></wp:status>
-		<wp:post_parent>0</wp:post_parent>
-		<wp:menu_order>0</wp:menu_order>
-		<wp:post_type><![CDATA[wp_global_styles]]></wp:post_type>
-		<wp:post_password><![CDATA[]]></wp:post_password>
-		<wp:is_sticky>0</wp:is_sticky>
-										<category domain="wp_theme" nicename="twentytwentyfour"><![CDATA[twentytwentyfour]]></category>
-						</item>
-					<item>
-		<title><![CDATA[Modern Wordpress Blocks]]></title>
-		<link>http://localhost:8888/?page_id=9</link>
-		<pubDate>Fri, 31 May 2024 12:08:10 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://localhost:8888/?page_id=9</guid>
-		<description></description>
-		<content:encoded><![CDATA[<!-- wp:paragraph -->
-<p>Cc Cédric :) Petit exemple de ce qu'on peux faire avec l'environnement de wordpress.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:antonin-blocks/swiper /-->]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>9</wp:post_id>
-		<wp:post_date><![CDATA[2024-05-31 12:08:10]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-05-31 12:08:10]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-05-31 12:14:24]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-05-31 12:14:24]]></wp:post_modified_gmt>
-		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
-		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
-		<wp:post_name><![CDATA[modern-wordpress-blocks]]></wp:post_name>
-		<wp:status><![CDATA[publish]]></wp:status>
-		<wp:post_parent>0</wp:post_parent>
-		<wp:menu_order>0</wp:menu_order>
-		<wp:post_type><![CDATA[page]]></wp:post_type>
-		<wp:post_password><![CDATA[]]></wp:post_password>
-		<wp:is_sticky>0</wp:is_sticky>
-														</item>
-					<item>
-		<title><![CDATA[Hello world! 2]]></title>
-		<link>http://localhost:8888/?p=11</link>
-		<pubDate>Fri, 31 May 2024 12:09:14 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://localhost:8888/?p=11</guid>
-		<description></description>
-		<content:encoded><![CDATA[<!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<!-- /wp:paragraph -->]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>11</wp:post_id>
-		<wp:post_date><![CDATA[2024-05-31 12:09:14]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-05-31 12:09:14]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-05-31 12:09:14]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-05-31 12:09:14]]></wp:post_modified_gmt>
+		<wp:post_id>19</wp:post_id>
+		<wp:post_date><![CDATA[2024-05-30 21:11:07]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-05-30 21:11:07]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-05-30 21:11:07]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-05-30 21:11:07]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
 		<wp:post_name><![CDATA[hello-world-2]]></wp:post_name>
@@ -407,21 +455,19 @@ Commenter avatars come from <a href="https://en.gravatar.com/">Gravatar</a>.]]><
 		</wp:postmeta>
 							</item>
 					<item>
-		<title><![CDATA[Hello world! 3]]></title>
-		<link>http://localhost:8888/?p=14</link>
-		<pubDate>Fri, 31 May 2024 12:09:49 +0000</pubDate>
+		<title><![CDATA[Hello world 3]]></title>
+		<link>http://localhost:8888/hello-world-3/</link>
+		<pubDate>Thu, 30 May 2024 21:11:16 +0000</pubDate>
 		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://localhost:8888/?p=14</guid>
+		<guid isPermaLink="false">http://localhost:8888/?p=21</guid>
 		<description></description>
-		<content:encoded><![CDATA[<!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<!-- /wp:paragraph -->]]></content:encoded>
+		<content:encoded><![CDATA[]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>14</wp:post_id>
-		<wp:post_date><![CDATA[2024-05-31 12:09:49]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-05-31 12:09:49]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-05-31 12:09:49]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-05-31 12:09:49]]></wp:post_modified_gmt>
+		<wp:post_id>21</wp:post_id>
+		<wp:post_date><![CDATA[2024-05-30 21:11:16]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-05-30 21:11:16]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-06-01 20:12:49]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-06-01 20:12:49]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
 		<wp:post_name><![CDATA[hello-world-3]]></wp:post_name>
@@ -440,77 +486,206 @@ Commenter avatars come from <a href="https://en.gravatar.com/">Gravatar</a>.]]><
 		<wp:meta_key><![CDATA[_encloseme]]></wp:meta_key>
 		<wp:meta_value><![CDATA[1]]></wp:meta_value>
 		</wp:postmeta>
-							</item>
-					<item>
-		<title><![CDATA[Hello world! 4]]></title>
-		<link>http://localhost:8888/?p=17</link>
-		<pubDate>Fri, 31 May 2024 12:10:45 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://localhost:8888/?p=17</guid>
-		<description></description>
-		<content:encoded><![CDATA[<!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<!-- /wp:paragraph -->]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>17</wp:post_id>
-		<wp:post_date><![CDATA[2024-05-31 12:10:45]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-05-31 12:10:45]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-05-31 12:10:45]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-05-31 12:10:45]]></wp:post_modified_gmt>
-		<wp:comment_status><![CDATA[open]]></wp:comment_status>
-		<wp:ping_status><![CDATA[open]]></wp:ping_status>
-		<wp:post_name><![CDATA[hello-world-4]]></wp:post_name>
-		<wp:status><![CDATA[publish]]></wp:status>
-		<wp:post_parent>0</wp:post_parent>
-		<wp:menu_order>0</wp:menu_order>
-		<wp:post_type><![CDATA[post]]></wp:post_type>
-		<wp:post_password><![CDATA[]]></wp:post_password>
-		<wp:is_sticky>0</wp:is_sticky>
-										<category domain="category" nicename="uncategorized"><![CDATA[Uncategorized]]></category>
-						<wp:postmeta>
-		<wp:meta_key><![CDATA[_pingme]]></wp:meta_key>
-		<wp:meta_value><![CDATA[1]]></wp:meta_value>
-		</wp:postmeta>
 							<wp:postmeta>
-		<wp:meta_key><![CDATA[_encloseme]]></wp:meta_key>
-		<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		<wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+		<wp:meta_value><![CDATA[29]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
-		<title><![CDATA[Hello world! 5]]></title>
-		<link>http://localhost:8888/?p=19</link>
-		<pubDate>Fri, 31 May 2024 12:10:54 +0000</pubDate>
+		<title><![CDATA[jigar-panchal-85w40hNO5wM-unsplash]]></title>
+		<link>http://localhost:8888/hello-world-3/jigar-panchal-85w40hno5wm-unsplash/</link>
+		<pubDate>Sat, 01 Jun 2024 20:12:30 +0000</pubDate>
 		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">http://localhost:8888/?p=19</guid>
+		<guid isPermaLink="false">http://localhost:8888/wp-content/uploads/2024/05/jigar-panchal-85w40hNO5wM-unsplash.jpg</guid>
 		<description></description>
-		<content:encoded><![CDATA[<!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<!-- /wp:paragraph -->]]></content:encoded>
+		<content:encoded><![CDATA[]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>19</wp:post_id>
-		<wp:post_date><![CDATA[2024-05-31 12:10:54]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2024-05-31 12:10:54]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2024-05-31 12:10:54]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2024-05-31 12:10:54]]></wp:post_modified_gmt>
+		<wp:post_id>27</wp:post_id>
+		<wp:post_date><![CDATA[2024-06-01 20:12:30]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-06-01 20:12:30]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-06-01 20:12:30]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-06-01 20:12:30]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
-		<wp:ping_status><![CDATA[open]]></wp:ping_status>
-		<wp:post_name><![CDATA[hello-world-5]]></wp:post_name>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[jigar-panchal-85w40hno5wm-unsplash]]></wp:post_name>
+		<wp:status><![CDATA[inherit]]></wp:status>
+		<wp:post_parent>21</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[attachment]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+						<wp:attachment_url><![CDATA[http://localhost:8888/wp-content/uploads/2024/05/jigar-panchal-85w40hNO5wM-unsplash.jpg]]></wp:attachment_url>
+											<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_attached_file]]></wp:meta_key>
+		<wp:meta_value><![CDATA[2024/05/jigar-panchal-85w40hNO5wM-unsplash.jpg]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_attachment_metadata]]></wp:meta_key>
+		<wp:meta_value><![CDATA[a:6:{s:5:"width";i:640;s:6:"height";i:360;s:4:"file";s:46:"2024/05/jigar-panchal-85w40hNO5wM-unsplash.jpg";s:8:"filesize";i:73185;s:5:"sizes";a:2:{s:6:"medium";a:5:{s:4:"file";s:46:"jigar-panchal-85w40hNO5wM-unsplash-300x169.jpg";s:5:"width";i:300;s:6:"height";i:169;s:9:"mime-type";s:10:"image/jpeg";s:8:"filesize";i:15063;}s:9:"thumbnail";a:5:{s:4:"file";s:46:"jigar-panchal-85w40hNO5wM-unsplash-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";s:8:"filesize";i:9316;}}s:10:"image_meta";a:12:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";s:11:"orientation";s:1:"0";s:8:"keywords";a:0:{}}}]]></wp:meta_value>
+		</wp:postmeta>
+							</item>
+					<item>
+		<title><![CDATA[jigar-panchal-D_ivYIn4jWw-unsplash]]></title>
+		<link>http://localhost:8888/hello-world-3/jigar-panchal-d_ivyin4jww-unsplash/</link>
+		<pubDate>Sat, 01 Jun 2024 20:12:30 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://localhost:8888/wp-content/uploads/2024/05/jigar-panchal-D_ivYIn4jWw-unsplash.jpg</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>28</wp:post_id>
+		<wp:post_date><![CDATA[2024-06-01 20:12:30]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-06-01 20:12:30]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-06-01 20:12:30]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-06-01 20:12:30]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[jigar-panchal-d_ivyin4jww-unsplash]]></wp:post_name>
+		<wp:status><![CDATA[inherit]]></wp:status>
+		<wp:post_parent>21</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[attachment]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+						<wp:attachment_url><![CDATA[http://localhost:8888/wp-content/uploads/2024/05/jigar-panchal-D_ivYIn4jWw-unsplash.jpg]]></wp:attachment_url>
+											<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_attached_file]]></wp:meta_key>
+		<wp:meta_value><![CDATA[2024/05/jigar-panchal-D_ivYIn4jWw-unsplash.jpg]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_attachment_metadata]]></wp:meta_key>
+		<wp:meta_value><![CDATA[a:6:{s:5:"width";i:640;s:6:"height";i:360;s:4:"file";s:46:"2024/05/jigar-panchal-D_ivYIn4jWw-unsplash.jpg";s:8:"filesize";i:63198;s:5:"sizes";a:2:{s:6:"medium";a:5:{s:4:"file";s:46:"jigar-panchal-D_ivYIn4jWw-unsplash-300x169.jpg";s:5:"width";i:300;s:6:"height";i:169;s:9:"mime-type";s:10:"image/jpeg";s:8:"filesize";i:15241;}s:9:"thumbnail";a:5:{s:4:"file";s:46:"jigar-panchal-D_ivYIn4jWw-unsplash-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";s:8:"filesize";i:9244;}}s:10:"image_meta";a:12:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";s:11:"orientation";s:1:"0";s:8:"keywords";a:0:{}}}]]></wp:meta_value>
+		</wp:postmeta>
+							</item>
+					<item>
+		<title><![CDATA[jigar-panchal-ME1_AXA5lAM-unsplash]]></title>
+		<link>http://localhost:8888/hello-world-3/jigar-panchal-me1_axa5lam-unsplash/</link>
+		<pubDate>Sat, 01 Jun 2024 20:12:30 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://localhost:8888/wp-content/uploads/2024/05/jigar-panchal-ME1_AXA5lAM-unsplash.jpg</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>29</wp:post_id>
+		<wp:post_date><![CDATA[2024-06-01 20:12:30]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-06-01 20:12:30]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-06-01 20:12:30]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-06-01 20:12:30]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[jigar-panchal-me1_axa5lam-unsplash]]></wp:post_name>
+		<wp:status><![CDATA[inherit]]></wp:status>
+		<wp:post_parent>21</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[attachment]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+						<wp:attachment_url><![CDATA[http://localhost:8888/wp-content/uploads/2024/05/jigar-panchal-ME1_AXA5lAM-unsplash.jpg]]></wp:attachment_url>
+											<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_attached_file]]></wp:meta_key>
+		<wp:meta_value><![CDATA[2024/05/jigar-panchal-ME1_AXA5lAM-unsplash.jpg]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_attachment_metadata]]></wp:meta_key>
+		<wp:meta_value><![CDATA[a:6:{s:5:"width";i:640;s:6:"height";i:360;s:4:"file";s:46:"2024/05/jigar-panchal-ME1_AXA5lAM-unsplash.jpg";s:8:"filesize";i:18800;s:5:"sizes";a:2:{s:6:"medium";a:5:{s:4:"file";s:46:"jigar-panchal-ME1_AXA5lAM-unsplash-300x169.jpg";s:5:"width";i:300;s:6:"height";i:169;s:9:"mime-type";s:10:"image/jpeg";s:8:"filesize";i:7881;}s:9:"thumbnail";a:5:{s:4:"file";s:46:"jigar-panchal-ME1_AXA5lAM-unsplash-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";s:8:"filesize";i:5880;}}s:10:"image_meta";a:12:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";s:11:"orientation";s:1:"0";s:8:"keywords";a:0:{}}}]]></wp:meta_value>
+		</wp:postmeta>
+							</item>
+					<item>
+		<title><![CDATA[Bloc : Questions / Réponses]]></title>
+		<link>http://localhost:8888/?post_type=acf-field-group&#038;p=72</link>
+		<pubDate>Wed, 05 Jun 2024 21:20:09 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://localhost:8888/?p=72</guid>
+		<description></description>
+		<content:encoded><![CDATA[a:9:{s:8:"location";a:1:{i:0;a:1:{i:0;a:3:{s:5:"param";s:5:"block";s:8:"operator";s:2:"==";s:5:"value";s:37:"acf/acf-block-block-questions-answers";}}}s:8:"position";s:6:"normal";s:5:"style";s:7:"default";s:15:"label_placement";s:3:"top";s:21:"instruction_placement";s:5:"label";s:14:"hide_on_screen";s:0:"";s:11:"description";s:0:"";s:12:"show_in_rest";i:0;s:8:"modified";i:1717510563;}]]></content:encoded>
+		<excerpt:encoded><![CDATA[bloc-questions-reponses]]></excerpt:encoded>
+		<wp:post_id>72</wp:post_id>
+		<wp:post_date><![CDATA[2024-06-05 21:20:09]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-06-05 21:20:09]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-06-05 21:20:09]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-06-05 21:20:09]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[group_665f21204b7dc]]></wp:post_name>
 		<wp:status><![CDATA[publish]]></wp:status>
 		<wp:post_parent>0</wp:post_parent>
 		<wp:menu_order>0</wp:menu_order>
-		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_type><![CDATA[acf-field-group]]></wp:post_type>
 		<wp:post_password><![CDATA[]]></wp:post_password>
 		<wp:is_sticky>0</wp:is_sticky>
-										<category domain="category" nicename="uncategorized"><![CDATA[Uncategorized]]></category>
-						<wp:postmeta>
-		<wp:meta_key><![CDATA[_pingme]]></wp:meta_key>
-		<wp:meta_value><![CDATA[1]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_encloseme]]></wp:meta_key>
-		<wp:meta_value><![CDATA[1]]></wp:meta_value>
-		</wp:postmeta>
-							</item>
+														</item>
+					<item>
+		<title><![CDATA[Titre du block]]></title>
+		<link>http://localhost:8888/?post_type=acf-field&#038;p=73</link>
+		<pubDate>Wed, 05 Jun 2024 21:20:09 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://localhost:8888/?post_type=acf-field&#038;p=73</guid>
+		<description></description>
+		<content:encoded><![CDATA[a:11:{s:10:"aria-label";s:0:"";s:4:"type";s:4:"text";s:12:"instructions";s:0:"";s:8:"required";i:0;s:17:"conditional_logic";i:0;s:7:"wrapper";a:3:{s:5:"width";s:0:"";s:5:"class";s:0:"";s:2:"id";s:0:"";}s:13:"default_value";s:0:"";s:9:"maxlength";s:0:"";s:11:"placeholder";s:0:"";s:7:"prepend";s:0:"";s:6:"append";s:0:"";}]]></content:encoded>
+		<excerpt:encoded><![CDATA[block_questions_answers_title]]></excerpt:encoded>
+		<wp:post_id>73</wp:post_id>
+		<wp:post_date><![CDATA[2024-06-05 21:20:09]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-06-05 21:20:09]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-06-05 21:20:09]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-06-05 21:20:09]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[field_665f2121bc140]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>72</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[acf-field]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+														</item>
+					<item>
+		<title><![CDATA[Choix des questions à afficher]]></title>
+		<link>http://localhost:8888/?post_type=acf-field&#038;p=74</link>
+		<pubDate>Wed, 05 Jun 2024 21:20:09 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://localhost:8888/?post_type=acf-field&#038;p=74</guid>
+		<description></description>
+		<content:encoded><![CDATA[a:16:{s:10:"aria-label";s:0:"";s:4:"type";s:12:"relationship";s:12:"instructions";s:0:"";s:8:"required";i:0;s:17:"conditional_logic";i:0;s:7:"wrapper";a:3:{s:5:"width";s:0:"";s:5:"class";s:0:"";s:2:"id";s:0:"";}s:9:"post_type";a:1:{i:0;s:3:"faq";}s:11:"post_status";a:1:{i:0;s:7:"publish";}s:8:"taxonomy";s:0:"";s:7:"filters";a:3:{i:0;s:6:"search";i:1;s:9:"post_type";i:2;s:8:"taxonomy";}s:13:"return_format";s:2:"id";s:3:"min";s:0:"";s:3:"max";s:0:"";s:8:"elements";s:0:"";s:13:"bidirectional";i:0;s:20:"bidirectional_target";a:0:{}}]]></content:encoded>
+		<excerpt:encoded><![CDATA[block_questions_answers_choice]]></excerpt:encoded>
+		<wp:post_id>74</wp:post_id>
+		<wp:post_date><![CDATA[2024-06-05 21:20:09]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-06-05 21:20:09]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-06-05 21:20:09]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-06-05 21:20:09]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[field_665f2147bc141]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>72</wp:post_parent>
+		<wp:menu_order>1</wp:menu_order>
+		<wp:post_type><![CDATA[acf-field]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+														</item>
+					<item>
+		<title><![CDATA[FAQs]]></title>
+		<link>http://localhost:8888/?post_type=acf-post-type&#038;p=75</link>
+		<pubDate>Wed, 05 Jun 2024 21:20:42 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">http://localhost:8888/?post_type=acf-post-type&#038;p=75</guid>
+		<description></description>
+		<content:encoded><![CDATA[a:36:{s:9:"post_type";s:3:"faq";s:22:"advanced_configuration";b:1;s:13:"import_source";s:0:"";s:11:"import_date";s:0:"";s:6:"labels";a:33:{s:4:"name";s:4:"FAQs";s:13:"singular_name";s:3:"FAQ";s:9:"menu_name";s:4:"FAQs";s:9:"all_items";s:13:"Tout les FAQs";s:9:"edit_item";s:12:"Modifier FAQ";s:9:"view_item";s:8:"Voir FAQ";s:10:"view_items";s:9:"Voir FAQs";s:12:"add_new_item";s:11:"Ajouter FAQ";s:7:"add_new";s:11:"Ajouter FAQ";s:8:"new_item";s:11:"Nouveau FAQ";s:17:"parent_item_colon";s:13:"FAQ parent :";s:12:"search_items";s:15:"Rechercher FAQs";s:9:"not_found";s:18:"Aucun faqs trouvé";s:18:"not_found_in_trash";s:22:"No faqs found in Trash";s:8:"archives";s:16:"Archives des FAQ";s:10:"attributes";s:17:"Attributs des FAQ";s:14:"featured_image";s:0:"";s:18:"set_featured_image";s:0:"";s:21:"remove_featured_image";s:0:"";s:18:"use_featured_image";s:0:"";s:16:"insert_into_item";s:17:"Insérer dans faq";s:21:"uploaded_to_this_item";s:23:"Téléversé sur ce faq";s:17:"filter_items_list";s:21:"Filtrer la liste faqs";s:14:"filter_by_date";s:21:"Filtrer faqs par date";s:21:"items_list_navigation";s:29:"Navigation dans la liste FAQs";s:10:"items_list";s:10:"Liste FAQs";s:14:"item_published";s:12:"FAQ publié.";s:24:"item_published_privately";s:22:"FAQ publié en privé.";s:22:"item_reverted_to_draft";s:26:"FAQ repassé en brouillon.";s:14:"item_scheduled";s:14:"FAQ planifié.";s:12:"item_updated";s:16:"FAQ mis à jour.";s:9:"item_link";s:8:"Lien FAQ";s:21:"item_link_description";s:20:"Un lien vers un faq.";}s:11:"description";s:0:"";s:6:"public";b:1;s:12:"hierarchical";b:0;s:19:"exclude_from_search";b:1;s:18:"publicly_queryable";b:0;s:7:"show_ui";b:1;s:12:"show_in_menu";b:1;s:17:"admin_menu_parent";s:0:"";s:17:"show_in_admin_bar";b:1;s:17:"show_in_nav_menus";b:1;s:12:"show_in_rest";b:1;s:9:"rest_base";s:0:"";s:14:"rest_namespace";s:5:"wp/v2";s:21:"rest_controller_class";s:24:"WP_REST_Posts_Controller";s:13:"menu_position";s:0:"";s:9:"menu_icon";a:2:{s:4:"type";s:9:"dashicons";s:5:"value";s:20:"dashicons-admin-post";}s:19:"rename_capabilities";b:0;s:24:"singular_capability_name";s:4:"post";s:22:"plural_capability_name";s:5:"posts";s:8:"supports";a:4:{i:0;s:5:"title";i:1;s:6:"author";i:2;s:6:"editor";i:3;s:9:"revisions";}s:10:"taxonomies";s:0:"";s:11:"has_archive";b:0;s:16:"has_archive_slug";s:0:"";s:7:"rewrite";a:4:{s:17:"permalink_rewrite";s:13:"post_type_key";s:10:"with_front";s:1:"1";s:5:"feeds";s:1:"0";s:5:"pages";s:1:"0";}s:9:"query_var";s:13:"post_type_key";s:14:"query_var_name";s:0:"";s:10:"can_export";b:1;s:16:"delete_with_user";b:0;s:20:"register_meta_box_cb";s:0:"";s:16:"enter_title_here";s:0:"";s:8:"modified";i:1717509975;}]]></content:encoded>
+		<excerpt:encoded><![CDATA[faqs]]></excerpt:encoded>
+		<wp:post_id>75</wp:post_id>
+		<wp:post_date><![CDATA[2024-06-05 21:20:42]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-06-05 21:20:42]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-06-05 21:20:42]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-06-05 21:20:42]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[post_type_65aa360a81cb4]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[acf-post-type]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+														</item>
 				</channel>
 </rss>
 	
