@@ -37,6 +37,20 @@ class AntoninBlocks
 			}, 10, 2);
 
 			register_block_type( __DIR__ . '/build/blocks/swiper' );
+			register_block_type( __DIR__ . '/build/blocks/block-post-banner' );
+
+			self::register_thumbnail_focal_point_meta();
+		});
+
+		add_action( 'enqueue_block_editor_assets', function() {
+			$sidebarAssets = include( plugin_dir_path( __FILE__ ) . 'build/sidebar.asset.php');
+			wp_enqueue_script(
+				'sidebar-editor',
+				plugins_url('build/sidebar.js', __FILE__),
+				$sidebarAssets['dependencies'],
+				$sidebarAssets['version'],
+				['in_footer' => true]
+			);
 		});
 	}
 
@@ -58,6 +72,16 @@ class AntoninBlocks
 		$category = $categories[0];
 
 		return "<a class='card-post__category' href='" . get_term_link($category) . "'>" . $category->name . "</a>";
+	}
+
+	public static function register_thumbnail_focal_point_meta(): void
+	{
+		register_post_meta('post', '_thumbnail_focal_point', array(
+			'show_in_rest' => true,
+			'single' => true,
+			'type' => 'object',
+			'default' => (object) ['x' => 0.5, 'y' => 0.5],
+		));
 	}
 }
 
