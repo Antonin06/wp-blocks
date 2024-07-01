@@ -1,0 +1,18 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-antonin-blocks-swiper {
+	overflow: hidden;
+}
+.panel-tab-responsive-settings {
+	&__desktop-tab,
+	&__tablet-tab,
+	&__mobile-tab {
+		&.active-tab {
+			background-color: #f3f3f3;
+		}
+	}
+}

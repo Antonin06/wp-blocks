@@ -1,0 +1,84 @@
+.block-questions-answers {
+	$this: &;
+
+	--transition-animation: all 0.3s ease-in-out;
+
+	padding: 60px 0;
+
+	&__title {
+		margin-bottom: 15px;
+		text-align: center;
+	}
+
+	&__questions {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	&__accordion-item {
+		&--is-active {
+			#{$this}__accordion-button {
+				border-radius: 10px 10px 0 0;
+			}
+
+			#{$this}__icon {
+				&::after {
+					transform: rotate(90deg);
+				}
+			}
+		}
+	}
+
+	&__accordion-button {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 20px;
+		background: #ffffff;
+		padding: 12px 12px 12px 30px;
+		cursor: pointer;
+		border: none;
+		border-radius: 10px;
+		transition: var(--transition-animation);
+	}
+
+	&__accordion-title {
+		font-size: 16px;
+		line-height: 24px;
+		font-weight: 500;
+		text-align: left;
+
+	}
+
+	&__icon {
+		background: blue;
+		padding: 10px;
+		border-radius: 5px;
+
+		&::after {
+			//@extend %icon;
+			//@extend %icon--cross;
+
+			//color: color.$white;
+			transform: rotate(45deg);
+			font-size: 25px;
+			display: block;
+			transition: var(--transition-animation);
+		}
+	}
+
+	&__accordion-content {
+		max-height: 0;
+		overflow: hidden;
+		transition: var(--transition-animation);
+		background: #ffffff;
+		border-radius: 0 0 10px 10px;
+	}
+
+	&__accordion-text {
+		padding: 30px 60px 30px 30px;
+		border-top: 1px solid grey;
+	}
+}

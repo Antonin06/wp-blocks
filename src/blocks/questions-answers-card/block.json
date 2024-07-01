@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "antonin-blocks/questions-answers-card",
+	"version": "0.0.1",
+	"title": "Questions & Answers Card",
+	"category": "antonin",
+	"icon": "smiley",
+	"description": "Example block scaffolded with Create Block tool.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"align": true
+	},
+	"attributes": {
+		"faqId": {
+			"type": "number",
+			"default": null
+		}
+	},
+	"textdomain": "antonin-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php",
+	"parent": ["antonin-blocks/questions-answers"]
+}
