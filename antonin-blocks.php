@@ -15,6 +15,8 @@
 
 namespace Antonin;
 
+use WP_Query;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -36,6 +38,7 @@ class AntoninBlocks {
 			return $categories;
 		}, 10, 2);
 
+		$this->add_filters();
 		register_block_type(__DIR__ . '/build/blocks/swiper');
 		register_block_type(__DIR__ . '/build/blocks/questions-answers');
 		register_block_type(__DIR__ . '/build/blocks/questions-answers-card');
@@ -124,6 +127,42 @@ class AntoninBlocks {
 		}
 
 		return $data;
+	}
+
+	private function add_filters(): void
+	{
+		add_filter( 'block_type_metadata', function( $metadata ) {
+			if ( 'antonin-blocks/questions-answers' === $metadata['name'] ) {
+				$metadata['attributes']['faqs'] = [
+					'type' => 'array',
+					'default' => [],
+				];
+
+				$metadata['attributes']['selectedFaqIds'] = [
+					'type' => 'array',
+					'default' => [],
+				];
+
+				$faqs = get_posts(array(
+					'post_type' => 'faq',
+					'numberposts' => -1,
+				));
+				// Transformer les posts en un format approprié pour les attributs
+				$faq_items = array();
+				foreach ( $faqs as $faq ) {
+					$faq_items[] = array(
+						'id' => $faq->ID,
+						'title' => $faq->post_title,
+						'content' => $faq->post_content,
+					);
+				}
+
+				// Ajouter les éléments FAQ aux attributs du metadata
+				$metadata['attributes']['faqs']['default'] = $faq_items;
+
+			}
+			return $metadata;
+		}, 10, 2 );
 	}
 
 }
