@@ -2,6 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
 import MyModal from './modal';
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+
 export default function Edit(props) {
 	const { attributes, setAttributes } = props;
 	const blockProps = useBlockProps();

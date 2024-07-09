@@ -31,12 +31,6 @@ const MyModal = ({ faqs, selectedFaqIds, handleFaqChange }) => {
 		);
 	};
 
-	const dialogFooter = (
-		<div>
-			<Button onClick={closeDialog}>Close</Button>
-		</div>
-	);
-
 	return (
 		<>
 			<Button onClick={openDialog}>Open FAQ Selector</Button>
@@ -44,7 +38,6 @@ const MyModal = ({ faqs, selectedFaqIds, handleFaqChange }) => {
 				header="Select and Order FAQs"
 				visible={visible}
 				style={{ width: '50vw' }}
-				footer={dialogFooter}
 				onHide={closeDialog}
 				modal
 				draggable={false}>
